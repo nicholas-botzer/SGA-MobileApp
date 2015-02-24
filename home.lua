@@ -2,7 +2,7 @@ local composer = require( "composer" )
 local display = require("display")
 local widget = require("widget")
 require("widgetExtension")
-
+widget.setTheme( "widget_theme_android" )
 local scene = composer.newScene()
 
 height = display.contentHeight
