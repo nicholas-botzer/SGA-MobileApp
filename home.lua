@@ -78,19 +78,19 @@ function scene:show( event )
             inEasing = easing.outBack,
             outEasing = easing.outCubic
         }
-        local background = display.newRect(0, 0,display.contentWidth,display.contentHeight + 100) -- the plus 100 needs looked at
-        background.anchorX = 0.0
-        background.anchorY = 0.0
-        background.x = 0
-        background.y = 0
+        local background = display.newRect(0, 0,display.contentWidth,display.contentHeight) -- the plus 100 needs looked at
+        --background.anchorX = 0.0
+        --background.anchorY = 0.0
+        background.x = width/2
+        background.y = height/2
         background:addEventListener( "touch", onBackgroundTouch )
-        background:setFillColor( 255,255,255 )
+        background:setFillColor( 1,1,1 )
 
         local footerBar = display.newRect(0,height,width,50)
         footerBar.anchorX = 0.0
         footerBar.anchorY = 0.0
         footerBar.strokeWidth = 1
-        footerBar:setFillColor(0,110,0)
+        footerBar:setFillColor(0,0.5,0)
         footerBar:setStrokeColor(0,0,0) 
 
 
@@ -116,7 +116,7 @@ function scene:show( event )
 
 
         panel.background = display.newRect(0,0,panel.width,panel.height)
-        panel.background:setFillColor( 0,255,255 )
+        panel.background:setFillColor( 0.5)
         panel:insert(panel.background)
 
         --Adding all the buttons to change between scenes for the panel
@@ -129,16 +129,13 @@ function scene:show( event )
             height=height*.15,
             x = 0,
             y = 0,
-            fillColor={ default={255,0,0} }
+            fillColor={ default={1,0,0} }
 
         }
         happyBusButton.anchorX = 0.0
         happyBusButton.anchorY = 0.0
         happyBusButton.x = -(panelWidth/2)
         happyBusButton.y = -(height/2)
-
-
-
 
         panel:insert(happyBusButton)
         --Add all the objects in the scene at the end

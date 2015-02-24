@@ -133,7 +133,7 @@ function widget.newNavigationBar( options )
     local barContainer = display.newGroup()
     local background = display.newRect(barContainer, opt.x, opt.y, opt.width, opt.height + statusBarPad )
     background.strokeWidth = 1
-    background:setFillColor( 0,110,0 )
+    background:setFillColor( 0,.5,0 )
     background:setStrokeColor(0,0,0)
 
 
