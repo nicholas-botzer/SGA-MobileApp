@@ -90,7 +90,7 @@ function scene:show( event )
         footerBar.anchorX = 0.0
         footerBar.anchorY = 0.0
         footerBar.strokeWidth = 1
-        footerBar:setFillColor(0,0.5,0)
+        footerBar:setFillColor(0,0.5,0.3)
         footerBar:setStrokeColor(0,0,0) 
 
 
