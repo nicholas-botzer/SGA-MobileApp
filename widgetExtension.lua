@@ -109,7 +109,7 @@ function widget.newNavigationBar( options )
     end
 
     opt.x = customOptions.x or display.contentCenterX
-    opt.y = customOptions.y or (opt.height + statusBarPad) * 0.5 - 50
+    opt.y = customOptions.y or (opt.height + statusBarPad) * 0.5
     opt.id = customOptions.id
     opt.isTransluscent = customOptions.isTransluscent or true
     opt.background = customOptions.background

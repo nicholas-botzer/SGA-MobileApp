@@ -73,7 +73,7 @@ function scene:show( event )
             location = "left",
             onComplete = panelTransDone,
             width = panelWidth,
-            height = display.contentHeight,
+            height = display.contentHeight * .8,
             speed = 250,
             inEasing = easing.outBack,
             outEasing = easing.outCubic
@@ -86,9 +86,7 @@ function scene:show( event )
         background:addEventListener( "touch", onBackgroundTouch )
         background:setFillColor( 1,1,1 )
 
-        local footerBar = display.newRect(0,height,width,50)
-        footerBar.anchorX = 0.0
-        footerBar.anchorY = 0.0
+        local footerBar = display.newRect(width/2,height*.95,width,height*.1)
         footerBar.strokeWidth = 1
         footerBar:setFillColor(0,0.5,0.3)
         footerBar:setStrokeColor(0,0,0) 
@@ -108,8 +106,10 @@ function scene:show( event )
         local navBar = widget.newNavigationBar({
         title = "Home",
         backgroundColor = { 0.96, 0.62, 0.34 },
+		height = height * .1,
         titleColor = {1, 1, 1},
         font = "HelveticaNeue",
+		fontSize = 36,
         leftButton = leftButton
         --includeStatusBar = true
          })
@@ -132,15 +132,14 @@ function scene:show( event )
             fillColor={ default={1,0,0} }
 
         }
-        happyBusButton.anchorX = 0.0
-        happyBusButton.anchorY = 0.0
-        happyBusButton.x = -(panelWidth/2)
-        happyBusButton.y = -(height/2)
+        happyBusButton.x = (panelWidth/2)
+        happyBusButton.y = (height/2)
 
         panel:insert(happyBusButton)
         --Add all the objects in the scene at the end
 
         sceneGroup:insert(background)
+		sceneGroup:insert(footerBar)
         sceneGroup:insert(panel)--panel needs to be the last thing inserted!!! Do not insert it earlier!!!
     end
 end
