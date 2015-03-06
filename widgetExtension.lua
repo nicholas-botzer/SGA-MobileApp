@@ -161,6 +161,11 @@ function widget.newNavigationBar( options )
                 fontSize = opt.fontSize,
                 labelColor = opt.leftButton.labelColor or { default={ 1, 1, 1 }, over={ 0, 0, 0, 0.5 } },
                 labelAlign = "left",
+                -- need to create a shape to be able to chance the background color
+                shape = "rect",
+                width = 60,
+                height = 34,
+                fillColor = { default = { 0,.5,.3 }, over = { 0.5, 0, .2 } },
             })
         end
         leftButton.x = 15 + leftButton.width * 0.5
