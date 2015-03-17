@@ -8,7 +8,7 @@ local scene = composer.newScene()
 height = display.contentHeight
 width = display.contentWidth
 panelWidth = width * .65
-panelHeight = height * .8
+panelHeight = height
 panelItems = display.newGroup()
 -- -----------------------------------------------------------------------------------------------------------------
 -- All code outside of the listener functions will only be executed ONCE unless "composer.removeScene()" is called.
@@ -83,11 +83,11 @@ function scene:show( event )
 
 
         -- I'm trying to populate the side bar from a dat file
-
-        --local panelPopFile = io.open("data/panelItems.dat", "rb")
+		local path = system.pathForFile("data/panelItems.dat", system.DocumentsDirectory )
+        local panelPopFile = io.open(path, "r")
         local panelPopLines = {}
         local panelPopItems = {}
-        for item in io.lines("data/panelItems.dat") do
+        for item in io.lines("C:/Users/nab1001/Documents/GitHub/SGA-MobileApp/data/panelItems.dat") do
             panelPopLines[#panelPopLines + 1] = item
         end
         --panelPopFile:close()
@@ -103,7 +103,7 @@ function scene:show( event )
                     temp = "    " .. item
                 end
                     panelPopItems[i][j] = temp
-                j = j + 1
+                j = j - 1
                 print(item)
             end
         end
@@ -135,17 +135,11 @@ function scene:show( event )
 
 
         local background = display.newRect(0, 0,display.contentWidth,display.contentHeight) -- the plus 100 needs looked at
-        --background.anchorX = 0.0
-        --background.anchorY = 0.0
         background.x = width/2
         background.y = height/2
         background:addEventListener( "touch", onBackgroundTouch )
         background:setFillColor( 1,1,1 )
 
-        local footerBar = display.newRect(width/2,height*.95,width,height*.1)
-        footerBar.strokeWidth = 1
-        footerBar:setFillColor(0,0.5,0.3)
-        footerBar:setStrokeColor(0,0,0) 
 
 
         --The leftButton can be changed to be an image if desired
@@ -177,26 +171,11 @@ function scene:show( event )
 
         --Adding all the buttons to change between scenes for the panel
         
-        local happyBusButton = widget.newButton{
-            label="Happy Bus",
-            --onEvent= handleButtonEvent,
-            shape="Rect",
-            width=panelWidth,
-            height=height*.15,
-            x = 0,
-            y = 0,
-            fillColor={ default={1,0,0} }
-
-        }
-        happyBusButton.x = (panelWidth/2)
-        happyBusButton.y = (height/2)
 
         panel:insert(panelItems)
-        panel:insert(happyBusButton)
         --Add all the objects in the scene at the end
 
         sceneGroup:insert(background)
-		sceneGroup:insert(footerBar)
         sceneGroup:insert(panel)--panel needs to be the last thing inserted!!! Do not insert it earlier!!!
     end
 end
