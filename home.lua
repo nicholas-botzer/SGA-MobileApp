@@ -93,7 +93,7 @@ function scene:show( event )
         local panelPopFile = io.open(path, "r")
         local panelPopLines = {}
         local panelPopItems = {}
-        for item in io.lines("C:/Users/nab1001/Documents/GitHub/SGA-MobileApp/data/panelItems.dat") do
+        for item in io.lines(path) do
             panelPopLines[#panelPopLines + 1] = item
         end
         --panelPopFile:close()
