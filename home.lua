@@ -8,6 +8,8 @@ local scene = composer.newScene()
 height = display.contentHeight
 width = display.contentWidth
 panelWidth = width * .65
+panelHeight = height * .8
+panelItems = display.newGroup()
 -- -----------------------------------------------------------------------------------------------------------------
 -- All code outside of the listener functions will only be executed ONCE unless "composer.removeScene()" is called.
 
@@ -17,6 +19,7 @@ panelWidth = width * .65
     local function handleButtonEvent(event)
         if event.phase == "ended" then
             panel:hide()
+            panelItems.alpha = 0
         end
         return true
     end
@@ -24,13 +27,16 @@ panelWidth = width * .65
     local function handleLeftButton(event)
         if event.phase == "ended" then
             panel:show()
+            panelItems.alpha = 1
         end
+
         return true
     end
 
     local function onBackgroundTouch( event )
     if event.phase == "began" then
         panel:hide()
+            panelItems.alpha = 0
     end
     return true
 end
@@ -65,16 +71,69 @@ function scene:show( event )
         -- Called when the scene is now on screen.
         -- Insert code here to make the scene come alive.
         -- Example: start timers, begin animation, play audio, etc.
-
         panel = widget.newPanel{
             location = "left",
             onComplete = panelTransDone,
             width = panelWidth,
-            height = display.contentHeight * .8,
+            height = panelHeight,
             speed = 250,
-            inEasing = easing.outBack,
-            outEasing = easing.outCubic
+            inEasing = easing.linear,
+            outEasing = easing.linear
         }
+
+
+        -- I'm trying to populate the side bar from a dat file
+
+        --local panelPopFile = io.open("data/panelItems.dat", "rb")
+        local panelPopLines = {}
+        local panelPopItems = {}
+        for item in io.lines("data/panelItems.dat") do
+            panelPopLines[#panelPopLines + 1] = item
+        end
+        --panelPopFile:close()
+
+        for i = 1,#panelPopLines do
+            panelPopItems[i] = {}
+            local j = 1
+            for item in string.gmatch(panelPopLines[i], "([^"..":::".."]+)") do
+                local temp = ""
+                if j == 1 then
+                    temp = item
+                elseif j~= 1 then
+                    temp = "    " .. item
+                end
+                    panelPopItems[i][j] = temp
+                j = j + 1
+                print(item)
+            end
+        end
+
+        local options = 
+        {
+            left = -250,
+            top = -500,
+            id = "",
+            label = "",
+            width = 500,
+            height = 75
+        }
+
+        local itemCount = 1
+        for i = 1,#panelPopItems do
+            for j = 1,#panelPopItems[i] do
+                options.id = "panelItem" .. itemCount
+                options.label = panelPopItems[i][j]
+                local item = widget.newButton(options)
+                item._view._label.size = 40
+                panelItems:insert(item)
+                options.top = options.top + 75
+                itemCount = itemCount + 1
+            end
+        end
+
+        panelItems.alpha = 0
+
+
         local background = display.newRect(0, 0,display.contentWidth,display.contentHeight) -- the plus 100 needs looked at
         --background.anchorX = 0.0
         --background.anchorY = 0.0
@@ -132,6 +191,7 @@ function scene:show( event )
         happyBusButton.x = (panelWidth/2)
         happyBusButton.y = (height/2)
 
+        panel:insert(panelItems)
         panel:insert(happyBusButton)
         --Add all the objects in the scene at the end
 
