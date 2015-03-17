@@ -24,7 +24,7 @@ panelItems = display.newGroup()
         return true
     end
 
-    local function handleLeftButton(event)
+    function handleLeftButton(event)
         if event.phase == "ended" then
             panel:show()
             panelItems.alpha = 1
@@ -34,12 +34,18 @@ panelItems = display.newGroup()
     end
 
     local function onBackgroundTouch( event )
-    if event.phase == "began" then
-        panel:hide()
-            panelItems.alpha = 0
-    end
-    return true
-end
+		if event.phase == "began" then
+			panel:hide()
+				panelItems.alpha = 0
+		end
+		return true
+	end
+	
+	function handleList(event)
+		if event.phase =="ended" then
+			composer.gotoScene("listSelection")
+		end
+	end
 
 
 -- -----------------------------------------------------------------------------------------------------------------
@@ -115,7 +121,8 @@ function scene:show( event )
             id = "",
             label = "",
             width = 500,
-            height = 75
+            height = 75,
+			onEvent = handleList
         }
 
         local itemCount = 1
@@ -134,7 +141,7 @@ function scene:show( event )
         panelItems.alpha = 0
 
 
-        local background = display.newRect(0, 0,display.contentWidth,display.contentHeight) -- the plus 100 needs looked at
+        background = display.newRect(0, 0,display.contentWidth,display.contentHeight) -- the plus 100 needs looked at
         background.x = width/2
         background.y = height/2
         background:addEventListener( "touch", onBackgroundTouch )
@@ -143,7 +150,7 @@ function scene:show( event )
 
 
         --The leftButton can be changed to be an image if desired
-        local leftButton = {
+        leftButton = {
             label = "Menu",
             labelColor = { default =  {1, 1, 1}, over = { 0.5, 0.5, 0.5} },
             onEvent = handleLeftButton,
@@ -153,7 +160,7 @@ function scene:show( event )
             height = 34,
         }
 
-        local navBar = widget.newNavigationBar({
+        navBar = widget.newNavigationBar({
         title = "Home",
         backgroundColor = { 0.96, 0.62, 0.34 },
 		height = height * .1,
