@@ -10,6 +10,7 @@ width = display.contentWidth
 panelWidth = width * .65
 panelHeight = height
 panelItems = display.newGroup()
+clickedButtonLabel = ""
 -- -----------------------------------------------------------------------------------------------------------------
 -- All code outside of the listener functions will only be executed ONCE unless "composer.removeScene()" is called.
 
@@ -24,7 +25,7 @@ panelItems = display.newGroup()
         return true
     end
 
-    function handleLeftButton(event)
+    local function handleLeftButton(event)
         if event.phase == "ended" then
             panel:show()
             panelItems.alpha = 1
@@ -33,7 +34,7 @@ panelItems = display.newGroup()
         return true
     end
 
-    local function onBackgroundTouch( event )
+    local function onBackgroundTouch(event)
 		if event.phase == "began" then
 			panel:hide()
 				panelItems.alpha = 0
@@ -41,11 +42,18 @@ panelItems = display.newGroup()
 		return true
 	end
 	
-	function handleList(event)
-        --local lab = event.target.label
-        local buttonLabel = { label = event.target:getLabel() }
+	local function handleList(event)
+        --local buttonLabel = { label = event.target:getLabel() }
+        clickedButtonLabel = event.target:getLabel()
+        print(clickedButtonLabel)
         if event.phase == "ended" then
-			composer.gotoScene("listSelection", { params = buttonLabel })
+            if clickedButtonLabel == "Home" then
+                composer.gotoScene("home")
+                panel:hide()
+            end
+		else
+            composer.gotoScene("listSelection")
+            panel:hide()
 		end
 	end
 
@@ -162,15 +170,15 @@ function scene:show( event )
             height = 34,
         }
 
-        navBar = widget.newNavigationBar({
+        local navBar = widget.newNavigationBar({
         title = "Home",
         backgroundColor = { 0.96, 0.62, 0.34 },
 		height = height * .1,
         titleColor = {1, 1, 1},
         font = "HelveticaNeue",
 		fontSize = 36,
-        leftButton = leftButton
-        --includeStatusBar = true
+        leftButton = leftButton,
+        includeStatusBar = true
          })
 
 

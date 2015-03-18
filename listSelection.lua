@@ -10,6 +10,33 @@ buttonList = display.newGroup();
 
 -- local forward references should go here
 
+local function onBackgroundTouch(event)
+    if event.phase == "began" then
+        panel:hide()
+        panelItems.alpha = 0
+    end
+    return true
+end
+
+local function handleButtonEvent(event)
+    if event.phase == "ended" then
+        panel:hide()
+        panelItems.alpha = 0
+    end
+    return true
+end
+
+local function handleLeftButton(event)
+    if event.phase == "ended" then
+        panel:show()
+        panelItems.alpha = 1
+    end
+
+    return true
+end
+
+
+
 -- -------------------------------------------------------------------------------
 
 
@@ -35,19 +62,10 @@ function scene:show( event )
         -- Called when the scene is now on screen.
         -- Insert code here to make the scene come alive.
         -- Example: start timers, begin animation, play audio, etc.
-		
-		local myRectangle = display.newRect( width/2, height/2, width, height )
-		myRectangle.strokeWidth = 3
-		myRectangle:setFillColor(1.0,0.0,0.0 )
-		myRectangle:setStrokeColor( 1, 0, 0 )
-
-	
-	
-
-       
+		       
         local matchedLine
         for item in io.lines("C:/Users/Aaron/Documents/GitHub/SGA-MobileApp/data/panelItems.dat") do
-            if ( item:match(event.params.label) ) then
+            if ( item:match(clickedButtonLabel) ) then
                 matchedLine = item
             end
         end
@@ -57,20 +75,29 @@ function scene:show( event )
                 sublistItems[#sublistItems + 1] = item
         end
 
-        local options = {
-            left = 0,
-            top = 0,
-            id = "Button",
-            label = sublistItems[2],
-            width = display.contentWidth,
-            height = display.contentHeight
-        }
+        background = display.newRect(0, 0,display.contentWidth,display.contentHeight) -- the plus 100 needs looked at
+        background.x = width/2
+        background.y = height/2
+        background:addEventListener( "touch", onBackgroundTouch )
+        background:setFillColor( 1,1,1 )
 
-        local button = widget.newButton(options)
-        buttonList:insert(button)
-        
-        --myRectangle:insert(buttonList)
-        sceneGroup:insert(myRectangle)
+        local navBar = widget.newNavigationBar({
+        title = sublistItems[1],
+        backgroundColor = { 0.96, 0.62, 0.34 },
+        height = height * .1,
+        titleColor = {1, 1, 1},
+        font = "HelveticaNeue",
+        fontSize = 36,
+        leftButton = leftButton,
+        includeStatusBar = true
+         })
+
+        local text = display.newText( "Test string", 100, 200, native.systemFont, 16)
+        text:setFillColor( 1, 0, 0 )
+
+        sceneGroup:insert(background)
+        sceneGroup:insert(text)
+        sceneGroup:insert(panel)--panel needs to be the last thing inserted!!! Do not insert it earlier!!!
 
 
         --[[for i = 2, #sublistItems do
