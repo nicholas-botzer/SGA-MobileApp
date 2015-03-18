@@ -19,7 +19,6 @@ panelItems = display.newGroup()
     local function handleButtonEvent(event)
         if event.phase == "ended" then
             panel:hide()
-            panelItems.alpha = 0
         end
         return true
     end
@@ -27,7 +26,6 @@ panelItems = display.newGroup()
     function handleLeftButton(event)
         if event.phase == "ended" then
             panel:show()
-            panelItems.alpha = 1
         end
 
         return true
@@ -36,7 +34,6 @@ panelItems = display.newGroup()
     local function onBackgroundTouch( event )
 		if event.phase == "began" then
 			panel:hide()
-				panelItems.alpha = 0
 		end
 		return true
 	end
@@ -46,6 +43,14 @@ panelItems = display.newGroup()
 			composer.gotoScene("listSelection")
 		end
 	end
+
+    function togglePanelButtons(event)
+        if panelItems.alpha == 1 then
+            panelItems.alpha = 0
+        elseif panelItems.alpha == 0 then
+            panelItems.alpha = 1
+        end
+    end
 
 
 -- -----------------------------------------------------------------------------------------------------------------
@@ -84,19 +89,18 @@ function scene:show( event )
             height = panelHeight,
             speed = 250,
             inEasing = easing.linear,
-            outEasing = easing.linear
+            outEasing = easing.linear,
+            onComplete = togglePanelButtons
         }
 
 
         -- I'm trying to populate the side bar from a dat file
-		local path = system.pathForFile("data/panelItems.dat", system.DocumentsDirectory )
-        local panelPopFile = io.open(path, "r")
+		local path = system.pathForFile("data\\panelItems.dat", system.ResourceDirectory )
         local panelPopLines = {}
         local panelPopItems = {}
         for item in io.lines(path) do
             panelPopLines[#panelPopLines + 1] = item
         end
-        --panelPopFile:close()
 
         for i = 1,#panelPopLines do
             panelPopItems[i] = {}
@@ -116,12 +120,13 @@ function scene:show( event )
 
         local options = 
         {
-            left = -250,
+            left = 0,
             top = -500,
             id = "",
             label = "",
-            width = 500,
-            height = 75,
+            labelAlign = "left",
+            width = panel.width,
+            height = 91,
 			onEvent = handleList
         }
 
@@ -133,7 +138,7 @@ function scene:show( event )
                 local item = widget.newButton(options)
                 item._view._label.size = 40
                 panelItems:insert(item)
-                options.top = options.top + 75
+                options.top = options.top + 82
                 itemCount = itemCount + 1
             end
         end
