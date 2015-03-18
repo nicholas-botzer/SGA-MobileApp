@@ -1,6 +1,8 @@
 local composer = require( "composer" )
-
+local widget = require("widget")
 local scene = composer.newScene()
+
+buttonList = display.newGroup();
 
 -- -----------------------------------------------------------------------------------------------------------------
 -- All code outside of the listener functions will only be executed ONCE unless "composer.removeScene()" is called.
@@ -34,14 +36,50 @@ function scene:show( event )
         -- Insert code here to make the scene come alive.
         -- Example: start timers, begin animation, play audio, etc.
 		
-		--[[local myRectangle = display.newRect( width/2, height/2, width, height )
+		local myRectangle = display.newRect( width/2, height/2, width, height )
 		myRectangle.strokeWidth = 3
 		myRectangle:setFillColor(1.0,0.0,0.0 )
 		myRectangle:setStrokeColor( 1, 0, 0 )
 
-	sceneGroup:insert(myRectangle)
-		]]--
-		
+	
+	
+
+       
+        local matchedLine
+        for item in io.lines("C:/Users/Aaron/Documents/GitHub/SGA-MobileApp/data/panelItems.dat") do
+            if ( item:match(event.params.label) ) then
+                matchedLine = item
+            end
+        end
+
+        local sublistItems = {}
+        for item in string.gmatch(matchedLine, "([^"..":::".."]+)") do
+                sublistItems[#sublistItems + 1] = item
+        end
+
+        local options = {
+            left = 0,
+            top = 0,
+            id = "Button",
+            label = sublistItems[2],
+            width = display.contentWidth,
+            height = display.contentHeight
+        }
+
+        local button = widget.newButton(options)
+        buttonList:insert(button)
+        
+        --myRectangle:insert(buttonList)
+        sceneGroup:insert(myRectangle)
+
+
+        --[[for i = 2, #sublistItems do
+            options.id = "ButtonList"..i
+            options.label = sublistItems[i]
+            local button = widget.newButton(options)
+
+        end]]--
+
     end
 end
 

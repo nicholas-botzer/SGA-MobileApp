@@ -42,8 +42,10 @@ panelItems = display.newGroup()
 	end
 	
 	function handleList(event)
-		if event.phase =="ended" then
-			composer.gotoScene("listSelection")
+        --local lab = event.target.label
+        local buttonLabel = { label = event.target:getLabel() }
+        if event.phase == "ended" then
+			composer.gotoScene("listSelection", { params = buttonLabel })
 		end
 	end
 
@@ -89,11 +91,11 @@ function scene:show( event )
 
 
         -- I'm trying to populate the side bar from a dat file
-		local path = system.pathForFile("data/panelItems.dat", system.DocumentsDirectory )
-        local panelPopFile = io.open(path, "r")
+		--local path = system.pathForFile("data/panelItems.dat", system.DocumentsDirectory )
+        --local panelPopFile = io.open(path, "r")
         local panelPopLines = {}
         local panelPopItems = {}
-        for item in io.lines(path) do
+        for item in io.lines("C:/Users/Aaron/Documents/GitHub/SGA-MobileApp/data/panelItems.dat") do
             panelPopLines[#panelPopLines + 1] = item
         end
         --panelPopFile:close()
