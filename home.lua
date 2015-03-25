@@ -10,6 +10,7 @@ width = display.contentWidth
 panelWidth = width * .65
 panelHeight = height
 panelItems = display.newGroup()
+clickedButtonLabel = ""
 -- -----------------------------------------------------------------------------------------------------------------
 -- All code outside of the listener functions will only be executed ONCE unless "composer.removeScene()" is called.
 
@@ -23,7 +24,7 @@ panelItems = display.newGroup()
         return true
     end
 
-    function handleLeftButton(event)
+    local function handleLeftButton(event)
         if event.phase == "ended" then
             panel:show()
         end
@@ -31,16 +32,25 @@ panelItems = display.newGroup()
         return true
     end
 
-    local function onBackgroundTouch( event )
+    local function onBackgroundTouch(event)
 		if event.phase == "began" then
 			panel:hide()
 		end
 		return true
 	end
 	
-	function handleList(event)
-		if event.phase =="ended" then
-			composer.gotoScene("listSelection")
+	local function handleList(event)
+        --local buttonLabel = { label = event.target:getLabel() }
+        clickedButtonLabel = event.target:getLabel()
+        print(clickedButtonLabel)
+        if event.phase == "ended" then
+            if clickedButtonLabel == "Home" then
+                composer.gotoScene("home")
+                panel:hide()
+            end
+		else
+            composer.gotoScene("listSelection")
+            panel:hide()
 		end
 	end
 
@@ -94,10 +104,15 @@ function scene:show( event )
 
 
         -- I'm trying to populate the side bar from a dat file
+<<<<<<< HEAD
 		local path = system.pathForFile("panelItems.txt", system.DocumentsDirectory )
+=======
+		--local path = system.pathForFile("data/panelItems.dat", system.DocumentsDirectory )
+        --local panelPopFile = io.open(path, "r")
+>>>>>>> origin/Aaron
         local panelPopLines = {}
         local panelPopItems = {}
-        for item in io.lines(path) do
+        for item in io.lines("C:/Users/Aaron/Documents/GitHub/SGA-MobileApp/data/panelItems.dat") do
             panelPopLines[#panelPopLines + 1] = item
         end
 
@@ -162,15 +177,15 @@ function scene:show( event )
             height = 34,
         }
 
-        navBar = widget.newNavigationBar({
+        local navBar = widget.newNavigationBar({
         title = "Home",
         backgroundColor = { 0.96, 0.62, 0.34 },
 		height = height * .1,
         titleColor = {1, 1, 1},
         font = "HelveticaNeue",
 		fontSize = 36,
-        leftButton = leftButton
-        --includeStatusBar = true
+        leftButton = leftButton,
+        includeStatusBar = true
          })
 
 
