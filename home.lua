@@ -89,13 +89,12 @@ function scene:show( event )
             height = panelHeight,
             speed = 250,
             inEasing = easing.linear,
-            outEasing = easing.linear,
-            onComplete = togglePanelButtons
+            outEasing = easing.linear
         }
 
 
         -- I'm trying to populate the side bar from a dat file
-		local path = system.pathForFile("data\\panelItems.dat", system.ResourceDirectory )
+		local path = system.pathForFile("panelItems.txt", system.DocumentsDirectory )
         local panelPopLines = {}
         local panelPopItems = {}
         for item in io.lines(path) do
@@ -120,13 +119,13 @@ function scene:show( event )
 
         local options = 
         {
-            left = 0,
-            top = -500,
+            left = -(panel.width / 2),
+            top = -(panel.height / 2.6),
             id = "",
             label = "",
-            labelAlign = "left",
+            labelAlign = "center",
             width = panel.width,
-            height = 91,
+            height = panel.height / #panelPopLines - 10,
 			onEvent = handleList
         }
 
@@ -136,14 +135,12 @@ function scene:show( event )
                 options.id = "panelItem" .. itemCount
                 options.label = panelPopItems[i][j]
                 local item = widget.newButton(options)
-                item._view._label.size = 40
+                item._view._label.size = 34
                 panelItems:insert(item)
                 options.top = options.top + 82
                 itemCount = itemCount + 1
             end
         end
-
-        panelItems.alpha = 0
 
 
         background = display.newRect(0, 0,display.contentWidth,display.contentHeight) -- the plus 100 needs looked at
