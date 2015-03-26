@@ -17,14 +17,14 @@ clickedButtonLabel = ""
 
 --Function declaration for the panel
 
-    local function handleButtonEvent(event)
+    function handleButtonEvent(event)
         if event.phase == "ended" then
             panel:hide()
         end
         return true
     end
 
-    local function handleLeftButton(event)
+    function handleLeftButton(event)
         if event.phase == "ended" then
             panel:show()
         end
@@ -32,14 +32,14 @@ clickedButtonLabel = ""
         return true
     end
 
-    local function onBackgroundTouch(event)
+    function onBackgroundTouch(event)
 		if event.phase == "began" then
 			panel:hide()
 		end
 		return true
 	end
 	
-	local function handleList(event)
+	function handleList(event)
         --local buttonLabel = { label = event.target:getLabel() }
         clickedButtonLabel = event.target:getLabel()
         print(clickedButtonLabel)
@@ -112,7 +112,7 @@ function scene:show( event )
 >>>>>>> origin/Aaron
         local panelPopLines = {}
         local panelPopItems = {}
-        for item in io.lines("C:/Users/Aaron/Documents/GitHub/SGA-MobileApp/data/panelItems.dat") do
+        for item in io.lines(path) do
             panelPopLines[#panelPopLines + 1] = item
         end
 

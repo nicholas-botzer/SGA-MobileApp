@@ -10,7 +10,7 @@ buttonList = display.newGroup();
 
 -- local forward references should go here
 
-local function onBackgroundTouch(event)
+function onBackgroundTouch(event)
     if event.phase == "began" then
         panel:hide()
         panelItems.alpha = 0
@@ -18,7 +18,7 @@ local function onBackgroundTouch(event)
     return true
 end
 
-local function handleButtonEvent(event)
+function handleButtonEvent(event)
     if event.phase == "ended" then
         panel:hide()
         panelItems.alpha = 0
@@ -26,7 +26,7 @@ local function handleButtonEvent(event)
     return true
 end
 
-local function handleLeftButton(event)
+function handleLeftButton(event)
     if event.phase == "ended" then
         panel:show()
         panelItems.alpha = 1
