@@ -103,18 +103,16 @@ function scene:show( event )
         }
 
 
-        -- I'm trying to populate the side bar from a dat file
-<<<<<<< HEAD
-		local path = system.pathForFile("panelItems.txt", system.DocumentsDirectory )
-=======
-		--local path = system.pathForFile("data/panelItems.dat", system.DocumentsDirectory )
-        --local panelPopFile = io.open(path, "r")
->>>>>>> origin/Aaron
+        -- I'm trying to populate the side bar from a txt file
+
+		local path = system.pathForFile("panelItems.txt", system.ResourceDirectory )
+        local panelPopFile = io.open(path, "r")
         local panelPopLines = {}
         local panelPopItems = {}
-        for item in io.lines(path) do
+        for item in panelPopFile:lines() do
             panelPopLines[#panelPopLines + 1] = item
         end
+        io.close( panelPopFile )
 
         for i = 1,#panelPopLines do
             panelPopItems[i] = {}

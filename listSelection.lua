@@ -35,6 +35,21 @@ function handleLeftButton(event)
     return true
 end
 
+function handleList(event)
+        --local buttonLabel = { label = event.target:getLabel() }
+        clickedButtonLabel = event.target:getLabel()
+        print(clickedButtonLabel)
+        if event.phase == "ended" then
+            if clickedButtonLabel == "Home" then
+                composer.gotoScene("home")
+                panel:hide()
+            end
+        else
+            composer.gotoScene("listSelection")
+            panel:hide()
+        end
+    end
+
 
 
 -- -------------------------------------------------------------------------------
@@ -64,11 +79,14 @@ function scene:show( event )
         -- Example: start timers, begin animation, play audio, etc.
 		       
         local matchedLine
-        for item in io.lines("C:/Users/Aaron/Documents/GitHub/SGA-MobileApp/data/panelItems.dat") do
+        local path = system.pathForFile("panelItems.txt", system.ResourceDirectory )
+        local panelPopFile = io.open(path, "r")
+        for item in panelPopFile:lines() do
             if ( item:match(clickedButtonLabel) ) then
                 matchedLine = item
             end
         end
+        io.close( panelPopFile )
 
         local sublistItems = {}
         for item in string.gmatch(matchedLine, "([^"..":::".."]+)") do
