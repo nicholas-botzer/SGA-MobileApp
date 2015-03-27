@@ -10,48 +10,6 @@ buttonList = display.newGroup();
 
 -- local forward references should go here
 
-function onBackgroundTouch(event)
-    if event.phase == "began" then
-        panel:hide()
-        panelItems.alpha = 0
-    end
-    return true
-end
-
-function handleButtonEvent(event)
-    if event.phase == "ended" then
-        panel:hide()
-        panelItems.alpha = 0
-    end
-    return true
-end
-
-function handleLeftButton(event)
-    if event.phase == "ended" then
-        panel:show()
-        panelItems.alpha = 1
-    end
-
-    return true
-end
-
-function handleList(event)
-        --local buttonLabel = { label = event.target:getLabel() }
-        clickedButtonLabel = event.target:getLabel()
-        print(clickedButtonLabel)
-        if event.phase == "ended" then
-            if clickedButtonLabel == "Home" then
-                composer.gotoScene("home")
-                panel:hide()
-            end
-        else
-            composer.gotoScene("listSelection")
-            panel:hide()
-        end
-    end
-
-
-
 -- -------------------------------------------------------------------------------
 
 
@@ -93,18 +51,24 @@ function scene:show( event )
                 sublistItems[#sublistItems + 1] = item
         end
 
-        background = display.newRect(0, 0,display.contentWidth,display.contentHeight) -- the plus 100 needs looked at
-        background.x = width/2
-        background.y = height/2
-        background:addEventListener( "touch", onBackgroundTouch )
-        background:setFillColor( 1,1,1 )
+        local testButton = widget.newButton({
+            x = 100,
+            y = 100,
+            id = "testButton",
+            label = "Just a test",
+            labelAlign = "center",
+            width = display.contentWidth,
+            height = 100,
+            labelColor = { default = {0, 0, 0}, over = {.25, .25, .25} },
+            onEvent = print("Button Clicked")
+        })
 
         local navBar = widget.newNavigationBar({
         title = sublistItems[1],
         backgroundColor = { 0.96, 0.62, 0.34 },
         height = height * .1,
         titleColor = {1, 1, 1},
-        font = "HelveticaNeue",
+        --font = "HelveticaNeue",
         fontSize = 36,
         leftButton = leftButton,
         includeStatusBar = true
@@ -115,6 +79,7 @@ function scene:show( event )
 
         sceneGroup:insert(background)
         sceneGroup:insert(text)
+        sceneGroup:insert(testButton)
         sceneGroup:insert(panel)--panel needs to be the last thing inserted!!! Do not insert it earlier!!!
 
 

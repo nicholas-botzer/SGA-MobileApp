@@ -11,6 +11,16 @@ panelWidth = width * .65
 panelHeight = height
 panelItems = display.newGroup()
 clickedButtonLabel = ""
+panel = widget.newPanel{
+            location = "left",
+            onComplete = panelTransDone,
+            width = panelWidth,
+            height = panelHeight,
+            speed = 250,
+            inEasing = easing.linear,
+            outEasing = easing.linear
+        }
+
 -- -----------------------------------------------------------------------------------------------------------------
 -- All code outside of the listener functions will only be executed ONCE unless "composer.removeScene()" is called.
 
@@ -39,19 +49,22 @@ clickedButtonLabel = ""
 		return true
 	end
 	
-	function handleList(event)
-        --local buttonLabel = { label = event.target:getLabel() }
+	local function handleList(event)
         clickedButtonLabel = event.target:getLabel()
-        print(clickedButtonLabel)
         if event.phase == "ended" then
             if clickedButtonLabel == "Home" then
-                composer.gotoScene("home")
+                local sceneName = composer.getSceneName( "current" )
+                if sceneName == "home" then
+                    panel:hide()
+                else
+                    composer.gotoScene("home")
+                    panel:hide()
+                end
+            else
+                composer.gotoScene("listSelection")
                 panel:hide()
             end
-		else
-            composer.gotoScene("listSelection")
-            panel:hide()
-		end
+        end
 	end
 
     function togglePanelButtons(event)
@@ -90,19 +103,7 @@ function scene:show( event )
         -- Called when the scene is still off screen (but is about to come on screen).
     elseif ( phase == "did" ) then
         -- Called when the scene is now on screen.
-        -- Insert code here to make the scene come alive.
-        -- Example: start timers, begin animation, play audio, etc.
-        panel = widget.newPanel{
-            location = "left",
-            onComplete = panelTransDone,
-            width = panelWidth,
-            height = panelHeight,
-            speed = 250,
-            inEasing = easing.linear,
-            outEasing = easing.linear
-        }
-
-
+        
         -- I'm trying to populate the side bar from a txt file
 
 		local path = system.pathForFile("panelItems.txt", system.ResourceDirectory )
@@ -126,7 +127,6 @@ function scene:show( event )
                 end
                     panelPopItems[i][j] = temp
                 j = j - 1
-                print(item)
             end
         end
 
@@ -156,7 +156,7 @@ function scene:show( event )
         end
 
 
-        background = display.newRect(0, 0,display.contentWidth,display.contentHeight) -- the plus 100 needs looked at
+        background = display.newRect(0, 0,display.contentWidth,display.contentHeight)
         background.x = width/2
         background.y = height/2
         background:addEventListener( "touch", onBackgroundTouch )
@@ -169,7 +169,7 @@ function scene:show( event )
             label = "Menu",
             labelColor = { default =  {1, 1, 1}, over = { 0.5, 0.5, 0.5} },
             onEvent = handleLeftButton,
-            font = "HelveticaNeue-Light",
+            --font = "HelveticaNeue-Light",
             isBackButton = false,
             width = 60,
             height = 34,
