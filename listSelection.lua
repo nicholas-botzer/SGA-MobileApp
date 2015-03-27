@@ -74,21 +74,31 @@ function scene:show( event )
         includeStatusBar = true
          })
 
-        local text = display.newText( "Test string", 100, 200, native.systemFont, 16)
-        text:setFillColor( 1, 0, 0 )
 
         sceneGroup:insert(background)
-        sceneGroup:insert(text)
+
+        for i = 2, #sublistItems do
+            local options =
+            {
+                id = "ButtonList"..i,
+                label = sublistItems[i],
+                labelAlign = "center",
+                x = width/2,
+                y = (height * .15) * (i -1),
+                width = width,
+                height = height * .15,
+                shape = "rect",
+                fillColor = { default={ 1, 0.2, 0.5, 0.7 }, over={ 1, 0.2, 0.5, 1 } },
+                strokeColor = { default={ 0, 0, 0, 1 }, over={ 0.8, 0.8, 1, 1 } },
+                strokeWidth = 4
+            }
+            local button = widget.newButton(options)
+            sceneGroup:insert(button)
+        end
+
+        
         sceneGroup:insert(testButton)
         sceneGroup:insert(panel)--panel needs to be the last thing inserted!!! Do not insert it earlier!!!
-
-
-        --[[for i = 2, #sublistItems do
-            options.id = "ButtonList"..i
-            options.label = sublistItems[i]
-            local button = widget.newButton(options)
-
-        end]]--
 
     end
 end
