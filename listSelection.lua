@@ -35,7 +35,8 @@ function scene:show( event )
         -- Called when the scene is now on screen.
         -- Insert code here to make the scene come alive.
         -- Example: start timers, begin animation, play audio, etc.
-		       
+		
+        barTitle.text = clickedButtonLabel
         local matchedLine
         local path = system.pathForFile("panelItems.txt", system.ResourceDirectory )
         local panelPopFile = io.open(path, "r")
@@ -63,16 +64,6 @@ function scene:show( event )
             onEvent = print("Button Clicked")
         })
 
-        local navBar = widget.newNavigationBar({
-        title = sublistItems[1],
-        backgroundColor = { 0.96, 0.62, 0.34 },
-        height = height * .1,
-        titleColor = {1, 1, 1},
-        --font = "HelveticaNeue",
-        fontSize = 36,
-        leftButton = leftButton,
-        includeStatusBar = true
-         })
 
 
         sceneGroup:insert(background)
@@ -88,7 +79,8 @@ function scene:show( event )
                 width = width,
                 height = height * .15,
                 shape = "rect",
-                fillColor = { default={ 1, 0.2, 0.5, 0.7 }, over={ 1, 0.2, 0.5, 1 } },
+                fontSize = height * .05,
+                fillColor = { default={ 1, 0.9, 1.0, 0.9 }, over={ 1, 0.2, 0.5, 1 } },
                 strokeColor = { default={ 0, 0, 0, 1 }, over={ 0.8, 0.8, 1, 1 } },
                 strokeWidth = 4
             }

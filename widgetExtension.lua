@@ -137,9 +137,9 @@ function widget.newNavigationBar( options )
     background:setStrokeColor(0,0,0)
 
 
-    local title = display.newText(opt.title, background.x, background.y + statusBarPad * 0.5, opt.font, opt.fontSize)
-    title:setFillColor(unpack(opt.titleColor))
-    barContainer:insert(title)
+    barTitle = display.newText(opt.title, background.x, background.y + statusBarPad * 0.5, opt.font, opt.fontSize)
+    barTitle:setFillColor(unpack(opt.titleColor))
+    barContainer:insert(barTitle)
 
     local leftButton
     if opt.leftButton then
@@ -158,18 +158,18 @@ function widget.newNavigationBar( options )
                 label = opt.leftButton.label,
                 onEvent = opt.leftButton.onEvent,
                 font = opt.leftButton.font or opt.font,
-                fontSize = opt.fontSize,
+                fontSize = opt.leftButton.fontSize,
                 labelColor = opt.leftButton.labelColor or { default={ 1, 1, 1 }, over={ 0, 0, 0, 0.5 } },
                 labelAlign = "left",
                 -- need to create a shape to be able to chance the background color
                 shape = "rect",
-                width = 60,
-                height = 34,
+                width = opt.leftButton.width,
+                height = opt.leftButton.height,
                 fillColor = { default = { 0,.5,.3 }, over = { 0.5, 0, .2 } },
             })
         end
         leftButton.x = 15 + leftButton.width * 0.5
-        leftButton.y = title.y
+        leftButton.y = barTitle.y
         barContainer:insert(leftButton)
     end
 
@@ -196,7 +196,7 @@ function widget.newNavigationBar( options )
             })
         end
         rightButton.x = display.contentWidth - (15 + rightButton.width * 0.5)
-        rightButton.y = title.y
+        rightButton.y = barTitle.y
         barContainer:insert(rightButton)
     end
 

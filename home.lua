@@ -50,6 +50,7 @@ panel = widget.newPanel{
 	end
 	
 	local function handleList(event)
+        navBar.title = "hello"
         clickedButtonLabel = event.target:getLabel()
         if event.phase == "ended" then
             if clickedButtonLabel == "Home" then
@@ -171,17 +172,18 @@ function scene:show( event )
             onEvent = handleLeftButton,
             --font = "HelveticaNeue-Light",
             isBackButton = false,
-            width = 60,
-            height = 34,
+            width = width * .10,
+            height = height * .1,
+            fontSize = height * .03
         }
 
-        local navBar = widget.newNavigationBar({
+        navBar = widget.newNavigationBar({
         title = "Home",
         backgroundColor = { 0.96, 0.62, 0.34 },
 		height = height * .1,
         titleColor = {1, 1, 1},
         font = "HelveticaNeue",
-		fontSize = 36,
+		fontSize = width * .05,
         leftButton = leftButton,
         includeStatusBar = true
          })
