@@ -50,8 +50,9 @@ panel = widget.newPanel{
 	end
 	
 	local function handleList(event)
-        navBar.title = "hello"
+
         clickedButtonLabel = event.target:getLabel()
+        barTitle.text = clickedButtonLabel
         if event.phase == "ended" then
             if clickedButtonLabel == "Home" then
                 local sceneName = composer.getSceneName( "current" )

@@ -75,11 +75,11 @@ function scene:show( event )
                 label = sublistItems[i],
                 labelAlign = "center",
                 x = width/2,
-                y = (height * .15) * (i -1),
+                y = (height * .15) * (i -1) + (height * .1) - (height * .065),
                 width = width,
                 height = height * .15,
                 shape = "rect",
-                fontSize = height * .05,
+                fontSize = width * .05,
                 fillColor = { default={ 1, 0.9, 1.0, 0.9 }, over={ 1, 0.2, 0.5, 1 } },
                 strokeColor = { default={ 0, 0, 0, 1 }, over={ 0.8, 0.8, 1, 1 } },
                 strokeWidth = 4
