@@ -12,6 +12,16 @@ buttonList = display.newGroup();
 
 -- -------------------------------------------------------------------------------
 
+    function handleListChoice(event)
+        if event.phase == "ended" then
+            clickedListLabel = event.target:getLabel()
+            if clickedListLabel == "Happy Bus/SGA Shuttle" then
+                composer.gotoScene("happyBus")
+                panel:hide()
+            end
+        end
+
+    end
 
 -- "scene:create()"
 function scene:create( event )
@@ -82,7 +92,8 @@ function scene:show( event )
                 fontSize = width * .05,
                 fillColor = { default={ 1, 0.9, 1.0, 0.9 }, over={ 1, 0.2, 0.5, 1 } },
                 strokeColor = { default={ 0, 0, 0, 1 }, over={ 0.8, 0.8, 1, 1 } },
-                strokeWidth = 4
+                strokeWidth = 4,
+                onEvent = handleListChoice
             }
             local button = widget.newButton(options)
             sceneGroup:insert(button)
