@@ -81,7 +81,7 @@ function scene:show( event )
         scrollView = widget.newScrollView
         {
             x = width/2,
-            y = (height*.1/2) + ((height*.9)/2),
+            y = (height/2) + (height*.1/2),
             width = width,
             height = height*.9,
             scrollWidth = width,
