@@ -67,24 +67,19 @@ panel = widget.newPanel{
                 local sceneName = composer.getSceneName( "current" )
                 if sceneName == "home" then
                     panel:hide()
+                    panelOpen = 0
                 else
                     composer.gotoScene("home")
                     panel:hide()
+                    panelOpen = 0
                 end
             else
                 composer.gotoScene("listSelection")
                 panel:hide()
+                panelOpen = 0
             end
         end
 	end
-
-    function togglePanelButtons(event)
-        if panelItems.alpha == 1 then
-            panelItems.alpha = 0
-        elseif panelItems.alpha == 0 then
-            panelItems.alpha = 1
-        end
-    end
 
 
 -- -----------------------------------------------------------------------------------------------------------------
