@@ -10,6 +10,7 @@ width = display.contentWidth
 panelWidth = width * .65
 panelHeight = height
 panelItems = display.newGroup()
+panelOpen = 0
 clickedButtonLabel = ""
 panel = widget.newPanel{
             location = "left",
@@ -30,13 +31,20 @@ panel = widget.newPanel{
     function handleButtonEvent(event)
         if event.phase == "ended" then
             panel:hide()
+            panelOpen = 0
         end
         return true
     end
 
     function handleLeftButton(event)
         if event.phase == "ended" then
-            panel:show()
+            if panelOpen == 0 then
+                panel:show()
+                panelOpen = 1
+            else
+                panel:hide()
+                panelOpen = 0
+            end
         end
 
         return true
@@ -45,6 +53,7 @@ panel = widget.newPanel{
     function onBackgroundTouch(event)
 		if event.phase == "began" then
 			panel:hide()
+            panelOpen = 0
 		end
 		return true
 	end

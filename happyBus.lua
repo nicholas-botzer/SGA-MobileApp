@@ -37,6 +37,8 @@ function scene:show( event )
         happyBusSchedule.x = width/2
         happyBusSchedule.y = (height*.9)/2 + height *.1
 
+        sceneGroup:insert(happyBusSchedule)
+        sceneGroup:insert(panel)--panel needs to be the last thing inserted!!! Do not insert it earlier!!!
     end
 end
 
