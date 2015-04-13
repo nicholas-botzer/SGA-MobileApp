@@ -13,7 +13,18 @@ buttonList = display.newGroup();
 -- -------------------------------------------------------------------------------
 
     function handleListChoice(event)
-        if event.phase == "ended" then
+
+        local phase = event.phase
+        if ( phase == "moved" ) then
+            local dy = math.abs( ( event.y - event.yStart ) )
+        -- If the touch on the button has moved more than 10 pixels,
+        -- pass focus back to the scroll view so it can continue scrolling
+            if ( dy > 10 ) then
+                scrollView:takeFocus( event )
+            end
+        end
+
+        if phase == "ended" then
             clickedListLabel = event.target:getLabel()
             if clickedListLabel == "Happy Bus/SGA Shuttle" then
                 composer.gotoScene("happyBus")
@@ -67,17 +78,15 @@ function scene:show( event )
                 sublistItems[#sublistItems + 1] = item
         end
 
-        local testButton = widget.newButton({
-            x = 100,
-            y = 100,
-            id = "testButton",
-            label = "Just a test",
-            labelAlign = "center",
-            width = display.contentWidth,
-            height = 100,
-            labelColor = { default = {0, 0, 0}, over = {.25, .25, .25} },
-            onEvent = print("Button Clicked")
-        })
+        scrollView = widget.newScrollView
+        {
+            x = width/2,
+            y = (height*.1/2) + ((height*.9)/2),
+            width = width,
+            height = height*.9,
+            scrollWidth = width,
+            scrollHeight = height*.9,
+        }
 
 
 
@@ -101,11 +110,10 @@ function scene:show( event )
                 onEvent = handleListChoice
             }
             local button = widget.newButton(options)
-            sceneGroup:insert(button)
+            scrollView:insert(button)
         end
 
-        
-        sceneGroup:insert(testButton)
+        sceneGroup:insert(scrollView)
         sceneGroup:insert(panel)--panel needs to be the last thing inserted!!! Do not insert it earlier!!!
 
     end
