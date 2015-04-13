@@ -18,6 +18,11 @@ buttonList = display.newGroup();
             if clickedListLabel == "Happy Bus/SGA Shuttle" then
                 composer.gotoScene("happyBus")
                 panel:hide()
+                panelOpen = 0
+            elseif clickedListLabel == "Finals Schedule" then
+                composer.gotoScene("finals")
+                panel:hide()
+                panelOpen = 0
             end
         end
 

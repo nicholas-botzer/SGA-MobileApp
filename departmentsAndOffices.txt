@@ -1,0 +1,8 @@
+{"departments":[
+	{"name":"Res Life","phone":"724-738-2082","fax":"724-738-2917","location":"Watson Hall"},
+	{"name":"Student Intervention Services","phone":"724-738-2507","fax":"724-738-4920","location":"Room 008 Old Main"},
+	{"name":"Office of Diversity and Inclusion","phone":"724-738-2082","fax":"724-738-2917","location":"Watson Hall"},
+	{"name":"CSIL","phone":"724-738-2092","fax":"N/A","location":"Smith Student Center Suite 234"},
+	{"name":"Office of Student","phone":"724-738-2082","fax":"724-738-2917","location":"Watson Hall"},
+	{"name":"Conflict and Resolution","phone":"724-738-2082","fax":"724-738-2917","location":"Watson Hall"}
+]}
