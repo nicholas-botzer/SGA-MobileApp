@@ -27,7 +27,17 @@ panel = widget.newPanel{
 
 
 --Function declaration for the panel
-
+    function scrollListener(event)
+        local phase = event.phase
+        if ( phase == "moved" ) then
+            local dy = math.abs( ( event.y - event.yStart ) )
+        -- If the touch on the button has moved more than 10 pixels,
+        -- pass focus back to the scroll view so it can continue scrolling
+            if ( dy > 10 ) then
+                panelScrollView:takeFocus( event )
+            end
+        end
+    end
     function handleButtonEvent(event)
         if event.phase == "ended" then
             panel:hide()
@@ -50,13 +60,6 @@ panel = widget.newPanel{
         return true
     end
 
-    function onBackgroundTouch(event)
-		if event.phase == "began" then
-			panel:hide()
-            panelOpen = 0
-		end
-		return true
-	end
 	
 	local function handleList(event)
 
@@ -79,6 +82,7 @@ panel = widget.newPanel{
                 panelOpen = 0
             end
         end
+        panelOpen = 0
 	end
 
 
@@ -138,8 +142,8 @@ function scene:show( event )
 
         local options = 
         {
-            left = -(panel.width / 2),
-            top = -(panel.height / 2.6),
+            x = 0,
+            y = -(height/2 - height*.15),
             id = "",
             label = "",
             labelAlign = "center",
@@ -148,6 +152,17 @@ function scene:show( event )
 			onEvent = handleList
         }
 
+        --[[panelScrollView = widget.newScrollView
+        {
+            top = panel.height/2,
+            left = panel.width * .6,
+            width = panel.width,
+            height = panel.height,
+            scrollWidth = panel.width,
+            scrollHeight = panel.height,
+            listener = scrollListener
+        }]]--
+
         local itemCount = 1
         for i = 1,#panelPopItems do
             for j = 1,#panelPopItems[i] do
@@ -155,8 +170,9 @@ function scene:show( event )
                 options.label = panelPopItems[i][j]
                 local item = widget.newButton(options)
                 item._view._label.size = 34
+                --panelScrollView:insert(item)
                 panelItems:insert(item)
-                options.top = options.top + 82
+                options.y = options.y + panel.height *.1
                 itemCount = itemCount + 1
             end
         end
@@ -165,7 +181,6 @@ function scene:show( event )
         background = display.newRect(0, 0,display.contentWidth,display.contentHeight)
         background.x = width/2
         background.y = height/2
-        background:addEventListener( "touch", onBackgroundTouch )
         background:setFillColor( 1,1,1 )
 
 
@@ -202,6 +217,7 @@ function scene:show( event )
         
 
         panel:insert(panelItems)
+        --panel:insert(panelScrollView)
         --Add all the objects in the scene at the end
 
         sceneGroup:insert(background)
