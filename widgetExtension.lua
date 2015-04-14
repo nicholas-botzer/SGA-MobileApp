@@ -165,7 +165,7 @@ function widget.newNavigationBar( options )
                 shape = "rect",
                 width = opt.leftButton.width,
                 height = opt.leftButton.height,
-                fillColor = { default = { 0,.5,.3 }, over = { 0.5, 0, .2 } },
+                fillColor = { default = { 0,.5,.3 }, over = { 0, .5, .3 } },
             })
         end
         leftButton.x = 15 + leftButton.width * 0.5
