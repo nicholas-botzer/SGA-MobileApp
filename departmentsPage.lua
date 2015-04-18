@@ -42,6 +42,7 @@ function scene:show( event )
         local lookingFor = clickedListLabel
         local lineNumber = -1
         local toDisplay = {}
+        local phoneNumber = ""
 
         local path = system.pathForFile("departmentsAndOffices.json", system.ResourceDirectory )
         local fileContents = ""
@@ -63,6 +64,8 @@ function scene:show( event )
                         toDisplay[1] = value
                     elseif attribute == "phone" then
                         toDisplay[2] = value
+                        phoneNumber = ":tel"..value
+                        print(phoneNumber)
                     elseif attribute == "fax" then
                         toDisplay[3] = value
                     elseif attribute == "location" then
@@ -90,18 +93,43 @@ function scene:show( event )
             local options =
             {
                 text = toDisplay[index],
-                x = width/10,
-                y = index * 50,
-                width = 128,     --required for multi-line and alignment
+                x = width/3,
+                y = index * 55,
+                width = 384,     --required for multi-line and alignment
                 font = native.systemFont,   
-                fontSize = 20,
+                fontSize = 30,
                 align = "left"  --new alignment parameter
             }
             print(options["text"])
             local text = display.newText(options)
             text:setTextColor(.5, 0, 0)
             scrollView:insert(text)
+
+            if index == #toDisplay then
+                options = 
+                {
+                id = "CallButton",
+                label = "Call "..toDisplay[1],
+                x = width/3,
+                y = index * 70,
+                width = 384,
+                height = height * .05,
+                shape = "rect",
+                fontSize = 20,
+                fillColor = { default={ 1, 0.9, 1.0, 0.9 }, over={ 1, 0.2, 0.5, 1 } },
+                strokeColor = { default={ 0, 0, 0, 1 }, over={ 0.8, 0.8, 1, 1 } },
+                strokeWidth = 4,
+                onEvent = system.openURL(phoneNumber)
+                }
+                local callButton = widget.newButton(options)
+                scrollView:insert(callButton)
+            end
+
+            
+
         end
+
+        
 
         sceneGroup:insert(background)
         sceneGroup:insert(scrollView)
