@@ -1,8 +1,9 @@
 local composer = require( "composer" )
+local json = require("json")
+require("widgetExtension")
 local widget = require("widget")
-local scene = composer.newScene()
 
-buttonList = display.newGroup();
+local scene = composer.newScene()
 
 -- -----------------------------------------------------------------------------------------------------------------
 -- All code outside of the listener functions will only be executed ONCE unless "composer.removeScene()" is called.
@@ -12,34 +13,6 @@ buttonList = display.newGroup();
 
 -- -------------------------------------------------------------------------------
 
-    function handleListChoice(event)
-
-        local phase = event.phase
-        if ( phase == "moved" ) then
-            local dy = math.abs( ( event.y - event.yStart ) )
-        -- If the touch on the button has moved more than 10 pixels,
-        -- pass focus back to the scroll view so it can continue scrolling
-            if ( dy > 10 ) then
-                scrollView:takeFocus( event )
-            end
-        end
-
-        if phase == "ended" then
-            clickedListLabel = event.target:getLabel()
-            if clickedListLabel == "Happy Bus/SGA Shuttle" then
-                composer.gotoScene("happyBus")
-            elseif clickedListLabel == "Finals Schedule" then
-                composer.gotoScene("finals")
-            elseif clickedButtonLabel == "Academics" then
-                composer.gotoScene("academicsPage")
-            elseif clickedButtonLabel == "Departments and Offices" then
-                composer.gotoScene("departmentsPage")
-            end
-             panel:hide()
-            panelOpen = 0
-        end
-
-    end
 
 -- "scene:create()"
 function scene:create( event )
@@ -63,21 +36,32 @@ function scene:show( event )
         -- Called when the scene is now on screen.
         -- Insert code here to make the scene come alive.
         -- Example: start timers, begin animation, play audio, etc.
-		
-        barTitle.text = clickedButtonLabel
-        local matchedLine
-        local path = system.pathForFile("panelItems.txt", system.ResourceDirectory )
-        local panelPopFile = io.open(path, "r")
-        for item in panelPopFile:lines() do
-            if ( item:match(clickedButtonLabel) ) then
-                matchedLine = item
-            end
-        end
-        io.close( panelPopFile )
 
-        local sublistItems = {}
-        for item in string.gmatch(matchedLine, "([^"..":::".."]+)") do
-                sublistItems[#sublistItems + 1] = item
+        -- I'm trying to populate the page from a json file
+
+        local lookingFor = clickedListLabel
+        local lineNumber = -1
+        local toDisplay = {}
+
+        local path = system.pathForFile("departmentsAndOffices.json", system.ResourceDirectory )
+        local fileContents = ""
+        local fileItems = {}
+        local file = io.open(path, "r")
+        if file then
+            fileContents = file:read("*a")
+            fileItems = json.decode(fileContents)
+        end
+        io.close(file)
+
+        for index = 1,#fileItems["departments"] do
+            if fileItems["departments"][index]["name"] == lookingFor then
+                -- I need to store all the stuff in this line to display
+                lineNumber = index
+                for attribute,value in pairs(fileItems["departments"][lineNumber]) do
+                    toDisplay[#toDisplay + 1] = value
+                end
+                break
+            end
         end
 
         scrollView = widget.newScrollView
@@ -90,34 +74,28 @@ function scene:show( event )
             scrollHeight = height*.9,
         }
 
+        local textGroup = {}
 
-
-        sceneGroup:insert(background)
-
-        for i = 2, #sublistItems do
+        for index = 1, #toDisplay do
             local options =
             {
-                id = "ButtonList"..i,
-                label = sublistItems[i],
-                labelAlign = "center",
-                x = width/2,
-                y = (height * .15) * (i -2) + (height * .095),
-                width = width,
-                height = height * .15,
-                shape = "rect",
-                fontSize = width * .05,
-                fillColor = { default={ 1, 0.9, 1.0, 0.9 }, over={ 1, 0.2, 0.5, 1 } },
-                strokeColor = { default={ 0, 0, 0, 1 }, over={ 0.8, 0.8, 1, 1 } },
-                strokeWidth = 4,
-                onEvent = handleListChoice
+                text = toDisplay[index],
+                x = width/10,
+                y = index * 50,
+                width = 128,     --required for multi-line and alignment
+                font = native.systemFont,   
+                fontSize = 20,
+                align = "left"  --new alignment parameter
             }
-            local button = widget.newButton(options)
-            scrollView:insert(button)
+            print(options["text"])
+            local text = display.newText(options)
+            text:setTextColor(.5, 0, 0)
+            scrollView:insert(text)
         end
 
+        sceneGroup:insert(background)
         sceneGroup:insert(scrollView)
         sceneGroup:insert(panel)--panel needs to be the last thing inserted!!! Do not insert it earlier!!!
-
     end
 end
 

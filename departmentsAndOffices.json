@@ -1,0 +1,16 @@
+{"departments":[
+	{"name":"Res Life","phone":"724-738-2082","fax":"724-738-2917","location":"Watson Hall"},
+	{"name":"Student Intervention Services","phone":"724-738-2507","fax":"724-738-4920","location":"Room 008 Old Main"},
+	{"name":"Office of Diversity and Inclusion","phone":"724-738-2082","fax":"724-738-2917","location":"Watson Hall"},
+	{"name":"CSIL","phone":"724-738-2092","fax":"N/A","location":"Smith Student Center Suite 234"},
+	{"name":"Office of Student Conflict and Resolution","phone":"724-738-4985","fax":"N/A","location":"008 Old Main"},
+	{"name":"Student Accounts","phone":"724-738-2088","fax":"N/A","location":"103 Old Main"},
+	{"name":"Student Records","phone":"724-738-2010","fax":"724-738-2936","location":"107 Old Main"},
+	{"name":"Academic Services","phone":"724-738-4609","fax":"724-738-4499","location":"Bailey Library"},
+	{"name":"Payroll","phone":"724-738-2069","fax":"N/A","location":"Old Main"},
+	{"name":"Public Affairs/Communication","phone":"724-738-2082","fax":"724-738-2917","location":"Watson Hall"},
+	{"name":"Human Resources","phone":"724-738-2070","fax":"724-738-4475","location":"Old Main"},
+	{"name":"Financial Aid","phone":"724-738-2044","fax":"724-738-2922","location":"107 Maltby Center"},
+	{"name":"Advisement Center","phone":"724-738-4609","fax":"724-738-4499","location":"106B Bailey Library"},
+	{"name":"IATS","phone":"724-738-2800","fax":"724-738-4483","location":"200 Maltby Center"}
+]}
