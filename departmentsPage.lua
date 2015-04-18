@@ -57,8 +57,18 @@ function scene:show( event )
             if fileItems["departments"][index]["name"] == lookingFor then
                 -- I need to store all the stuff in this line to display
                 lineNumber = index
+                --items are getting loaded in wrong order somehow so it's hardcoded for now
                 for attribute,value in pairs(fileItems["departments"][lineNumber]) do
-                    toDisplay[#toDisplay + 1] = value
+                    if attribute == "name" then
+                        toDisplay[1] = value
+                    elseif attribute == "phone" then
+                        toDisplay[2] = value
+                    elseif attribute == "fax" then
+                        toDisplay[3] = value
+                    elseif attribute == "location" then
+                        toDisplay[4] = value
+                    end
+                    --toDisplay[#toDisplay + 1] = value
                 end
                 break
             end
