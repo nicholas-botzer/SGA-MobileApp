@@ -142,13 +142,15 @@ function scene:show( event )
 
         local options = 
         {
-            x = 0,
-            y = -(height/2 - height*.15),
+            --x = 0,
+            --y = -(height/2 - height*.15),
+            left = -(panel.width / 2),
+            top = -(panel.height / 2.6),
             id = "",
             label = "",
             labelAlign = "center",
             width = panel.width,
-            height = panel.height / #panelPopLines - 10,
+            height = panel.height / #panelPopLines - 7,
 			onEvent = handleList
         }
 
@@ -172,7 +174,8 @@ function scene:show( event )
                 item._view._label.size = 34
                 --panelScrollView:insert(item)
                 panelItems:insert(item)
-                options.y = options.y + panel.height *.1
+                --options.y = options.y + panel.height *.1
+                options.top = options.top + 80
                 itemCount = itemCount + 1
             end
         end

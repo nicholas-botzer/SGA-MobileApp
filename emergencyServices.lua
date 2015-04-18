@@ -44,7 +44,7 @@ function scene:show( event )
         local toDisplay = {}
         local phoneNumber = ""
 
-        local path = system.pathForFile("academics.json", system.ResourceDirectory )
+        local path = system.pathForFile("emergencyServices.json", system.ResourceDirectory )
         local fileContents = ""
         local fileItems = {}
         local file = io.open(path, "r")
@@ -54,11 +54,11 @@ function scene:show( event )
         end
         io.close(file)
 
-        for index = 1,#fileItems["academics"] do
-            if fileItems["academics"][index]["name"] == lookingFor then
+        for index = 1,#fileItems["emergency services"] do
+            if fileItems["emergency services"][index]["name"] == lookingFor then
                 -- I need to store all the stuff in this line to display
                 lineNumber = index
-                for attribute,value in pairs(fileItems["academics"][lineNumber]) do
+                for attribute,value in pairs(fileItems["emergency services"][lineNumber]) do
                     toDisplay[#toDisplay + 1] = value
                     if attribute == "phone" then
                         phoneNumber = ":tel"..value

@@ -34,6 +34,24 @@ buttonList = display.newGroup();
                 composer.gotoScene("academicsPage")
             elseif clickedButtonLabel == "Departments and Offices" then
                 composer.gotoScene("departmentsPage")
+            elseif clickedButtonLabel == "Emergency Services" then
+                composer.gotoScene("emergencyServices")
+            elseif clickedButtonLabel == "Clubs and Organizations" then
+                --composer.gotoScene("")
+            elseif clickedButtonLabel == "Communication" then
+                --composer.gotoScene("")
+            elseif clickedButtonLabel == "Dining" then
+                --composer.gotoScene("")
+            elseif clickedButtonLabel == "Events" then
+               -- composer.gotoScene("")
+            elseif clickedButtonLabel == "Health and Safety" then
+               -- composer.gotoScene("")
+            elseif clickedButtonLabel == "Recreation" then
+               -- composer.gotoScene("")
+            elseif clickedButtonLabel == "About" then
+               -- composer.gotoScene("")
+            elseif clickedButtonLabel == "SGA Feedback" then
+               -- composer.gotoScene("")
             end
              panel:hide()
             panelOpen = 0

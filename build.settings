@@ -29,13 +29,17 @@ settings = {
             --]]
 		}
 	},
+
+
+	--Android permissions
+    android =
+    {
+        usesPermissions =
+        {
+            "android.permission.CALL_PHONE",
+            "android.permission.INTERNET"
+        },
+    },
+
 	
-	--[[
-	-- Android permissions
-
-	androidPermissions = {
-  		"android.permission.INTERNET",
-  	},
-
-	]]--
 }
