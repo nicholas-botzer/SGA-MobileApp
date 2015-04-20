@@ -7,7 +7,7 @@ Nick
 -Happy bus schedule not scaling properly
 Aaron
 -Dining Page
--Look into Events and Rec loading same thing
+-Look into Events and Rec loading same thing -- done
 -Emergency Services
 -Two hour delay scedule
 Alex

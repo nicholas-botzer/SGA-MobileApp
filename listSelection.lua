@@ -38,7 +38,8 @@ buttonList = display.newGroup();
                 composer.gotoScene("emergencyServices")
             elseif clickedButtonLabel == "Communication" then
                 --composer.gotoScene("")
-            elseif clickedButtonLabel == "On-Campus" then
+            elseif clickedListLabel == "On-Campus" then
+                print("here")
                 composer.gotoScene("dining")
 			elseif clickedButtonLabel == "Off-Campus" then
                 --composer.gotoScene("")
@@ -86,8 +87,20 @@ function scene:show( event )
         local matchedLine
         local path = system.pathForFile("panelItems.txt", system.ResourceDirectory )
         local panelPopFile = io.open(path, "r")
+
+        local matchedCategory = ""
         for item in panelPopFile:lines() do
-            if ( item:match(clickedButtonLabel) ) then
+
+            local cnt = 1
+            for i in string.gmatch(item,  "([^"..":::".."]+)") do
+                --store only the first string in a line to prevent accidental matching
+                if cnt == 1 then
+                    matchedCategory = i
+                end
+                cnt = cnt + 1
+            end
+
+            if ( matchedCategory:match(clickedButtonLabel) ) then
                 matchedLine = item
             end
         end

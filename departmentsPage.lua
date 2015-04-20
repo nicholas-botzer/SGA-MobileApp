@@ -65,7 +65,6 @@ function scene:show( event )
                     elseif attribute == "phone" then
                         toDisplay[2] = value
                         phoneNumber = ":tel"..value
-                        print(phoneNumber)
                     elseif attribute == "fax" then
                         toDisplay[3] = value
                     elseif attribute == "location" then
