@@ -30,6 +30,8 @@ buttonList = display.newGroup();
                 composer.gotoScene("happyBus")
             elseif clickedListLabel == "Finals Schedule" then
                 composer.gotoScene("finals")
+            elseif clickedListLabel == "2 Hour Delay" then
+               composer.gotoScene("2hourDelay")
             elseif clickedButtonLabel == "Academics" then
                 composer.gotoScene("academicsPage")
             elseif clickedButtonLabel == "Departments and Offices" then
