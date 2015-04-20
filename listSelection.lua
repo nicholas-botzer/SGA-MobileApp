@@ -36,8 +36,6 @@ buttonList = display.newGroup();
                 composer.gotoScene("departmentsPage")
             elseif clickedButtonLabel == "Emergency Services" then
                 composer.gotoScene("emergencyServices")
-            elseif clickedButtonLabel == "Clubs and Organizations" then
-                --composer.gotoScene("")
             elseif clickedButtonLabel == "Communication" then
                 --composer.gotoScene("")
             elseif clickedButtonLabel == "Dining" then

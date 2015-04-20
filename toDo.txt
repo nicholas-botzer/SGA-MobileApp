@@ -1,0 +1,27 @@
+To Do
+Nick
+-Side panel Scrolling
+-Home page
+-Recreation
+-SGA Feedback
+-Happy bus schedule not scaling properly
+Aaron
+-Dining Page
+-Look into Events and Rec loading same thing
+-Emergency Services
+-Two hour delay scedule
+Alex
+-Page loading with information formatting
+-Ensure you can call from within
+Quentin
+-Health and Safety
+-Remove University police from health and safety
+-Residence Life
+-About
+-Remove Issues/Bug Report
+
+
+
+Done
+-Departments and Offices
+-Academics
