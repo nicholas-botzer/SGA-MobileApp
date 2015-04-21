@@ -106,7 +106,7 @@ function scene:show( event )
            line.strokeWidth = 8
            scrollView:insert(line)
 
-           yPos = yPos + 40
+           yPos = yPos + 50
            local options = {
                 text = "Hole: ".. fileItems["frisbee"][x]["hole"] .."  Tee: ".. fileItems["frisbee"][x]["tees"] ,
                 x = width/2,
@@ -119,7 +119,7 @@ function scene:show( event )
            local hole = display.newText( options )
            hole:setFillColor(0.0,0.0,0.0)
            scrollView:insert(hole)
-           yPos = yPos + 80
+           yPos = yPos + 90
            local options = {
                 text = "Par: ".. fileItems["frisbee"][x]["par"] .."  Basket: ".. fileItems["frisbee"][x]["basket"] ,
                 x = width/2,
@@ -133,8 +133,13 @@ function scene:show( event )
            par:setFillColor( 0.0 )
            scrollView:insert(par)
 
-           yPos = yPos + 50
+           yPos = yPos + 30
         end
+
+        local line = display.newLine(leftX,yPos,rightX,yPos)
+           line:setStrokeColor( 0,0,0 )
+           line.strokeWidth = 8
+           scrollView:insert(line)
 
 
         scrollView:setScrollHeight(height + 1000)  --this is realy fucking everything up and needed to be done

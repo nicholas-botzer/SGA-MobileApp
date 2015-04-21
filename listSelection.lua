@@ -24,6 +24,7 @@ buttonList = display.newGroup();
             end
         end
 
+
         if phase == "ended" then
             clickedListLabel = event.target:getLabel()
             if clickedListLabel == "Happy Bus/SGA Shuttle" then
