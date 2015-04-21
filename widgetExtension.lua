@@ -24,9 +24,9 @@ function widget.newPanel( options )
     end
     local container = display.newContainer( opt.width, opt.height )
     if ( opt.location == "left" ) then
-        container.anchorX = 1.0
-        container.x = display.screenOriginX
-        container.anchorY = 0.5
+        --container.anchorX = 0.5
+        container.x = -(display.contentCenterX)
+        --container.anchorY = 0.5
         container.y = display.contentCenterY
     elseif ( opt.location == "right" ) then
         container.anchorX = 0.0
@@ -58,7 +58,7 @@ function widget.newPanel( options )
         elseif ( opt.location == "bottom" ) then
             options.y = display.actualContentHeight - opt.height
         elseif ( opt.location == "left" ) then
-            options.x = display.screenOriginX + opt.width
+            options.x = opt.width/2
         else
             options.x = display.actualContentWidth - opt.width
         end 
@@ -78,7 +78,7 @@ function widget.newPanel( options )
         elseif ( opt.location == "bottom" ) then
             options.y = display.actualContentHeight
         elseif ( opt.location == "left" ) then
-            options.x = display.screenOriginX
+            options.x = -(display.contentCenterX)
         else
             options.x = display.actualContentWidth
         end 
