@@ -48,7 +48,7 @@ function scene:show( event )
             "Passes are required weekdays from 8 a.m.-4 p.m."..
             "SRU will host the 2015 World Disc Golf Championships in August of 2015.",     
             x = width/2,
-            y = height * .30,
+            y = height * .2,
             width = width,     --required for multi-line and alignment
             font = native.systemFontBold,   
             fontSize = 48,
@@ -75,22 +75,42 @@ function scene:show( event )
         end
         io.close(file)
 
+        print(fileItems["frisbee"])
         for index = 1,#fileItems["frisbee"] do
                 -- I need to store all the stuff in this line to display
                 lineNumber = index
                 for attribute,value in pairs(fileItems["frisbee"][lineNumber]) do
                     toDisplay[#toDisplay + 1] = value
-                    end
                 end
-            end
         end
 
+        local scrollView = widget.newScrollView
+        {
+            x = width/2,
+            y = (height/2) + (height*.1/2),
+            width = width,
+            height = height*.9,
+            scrollWidth = width,
+            scrollHeight = height*.9,
+            backgroundColor = {0.0,1.0,0.0},
+            horizontalScrollDisabled = true
+        }
+        yStart = height *.4
+        scrollView:insert(frisbeeInfo)
+        for x=1,#fileItems["frisbee"] do
+
+           local line = display.newLine(-(width/2),(yStart + (x-1)*150),width,(yStart+(x-1)*150))
+           line:setStrokeColor( 1,0,0 )
+           line.strokeWidth = 8
+           scrollView:insert(line)
+        end
 
 
       
 
         sceneGroup:insert(background)
-        sceneGroup:insert(frisbeeInfo)
+        sceneGroup:insert(scrollView)
+        --sceneGroup:insert(frisbeeInfo)
         sceneGroup:insert(panel)--panel needs to be the last thing inserted!!! Do not insert it earlier!!!
     end
 end
