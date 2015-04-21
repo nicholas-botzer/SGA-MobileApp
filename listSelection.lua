@@ -49,7 +49,7 @@ buttonList = display.newGroup();
             elseif clickedButtonLabel == "Health and Safety" then
                -- composer.gotoScene("")
             elseif clickedButtonLabel == "Recreation" then
-               -- composer.gotoScene("")
+                composer.gotoScene("recreation")
             elseif clickedButtonLabel == "About" then
                -- composer.gotoScene("")
             elseif clickedButtonLabel == "SGA Feedback" then

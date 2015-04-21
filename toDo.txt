@@ -1,10 +1,9 @@
 To Do
 Nick
--Side panel Scrolling
 -Home page
 -Recreation
 -SGA Feedback
--Happy bus schedule not scaling properly
+-Happy bus schedule not scaling properly //not sure if this is actually an issue
 Aaron
 -Dining Page
 -Look into Events and Rec loading same thing -- done
@@ -23,5 +22,6 @@ Quentin
 
 
 Done
+-Side Panel Scrolling
 -Departments and Offices
 -Academics
