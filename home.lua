@@ -154,12 +154,12 @@ function scene:show( event )
         local options = 
         {
             x = panel.width/2,
-            y = panel.height * .15,
+            y = panel.height * .15 + 30,
             id = "",
             label = "",
             labelAlign = "center",
             width = panel.width,
-            height = (panel.height / #panelPopLines - 7),
+            height = (panel.height / #panelPopLines - 7) + 60,
 			onEvent = handleList
         }
 
@@ -184,7 +184,7 @@ function scene:show( event )
                 local item = widget.newButton(options)
                 item._view._label.size = 34
                 panelScrollView:insert(item)
-                options.y = options.y + (panel.height / #panelPopLines - 7)
+                options.y = options.y + (panel.height / #panelPopLines - 7) + 60
                 itemCount = itemCount + 1
             end
         end
@@ -221,13 +221,9 @@ function scene:show( event )
          })
 
 
-        --panel.background = display.newRect(0,0,panel.width,panel.height)
-        --panel.background:setFillColor( 0.5)
-        --panel:insert(panel.background)
-
         --Adding all the buttons to change between scenes for the panel
         
-
+        panelScrollView:setScrollHeight( height + 1300)  --this is realy fucking everything up and needed to be done
         --panel:insert(panelItems)
         panel:insert(panelScrollView)
         --Add all the objects in the scene at the end
