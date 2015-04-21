@@ -32,6 +32,8 @@ buttonList = display.newGroup();
                 composer.gotoScene("finals")
             elseif clickedListLabel == "2 Hour Delay" then
                composer.gotoScene("2hourDelay")
+            elseif clickedListLabel == "Frisbee Golf Course" then
+                composer.gotoScene( "frisbeeGolf")
             elseif clickedButtonLabel == "Academics" then
                 composer.gotoScene("academicsPage")
             elseif clickedButtonLabel == "Departments and Offices" then

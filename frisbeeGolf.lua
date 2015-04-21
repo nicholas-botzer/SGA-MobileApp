@@ -35,14 +35,37 @@ function scene:show( event )
         -- Called when the scene is now on screen.
         -- Insert code here to make the scene come alive.
         -- Example: start timers, begin animation, play audio, etc.
+         local background = display.newRect( width/2, height/2, width, height )
+        background:setFillColor( 1,1,1 )
 
+        local options = 
+        {
+            --parent = textGroup,
+            text = "The McFarland Recreational Sports Complex now includes a 18 hole Disc Golf Course.".. 
+            "The original nine holes opened at the start of the 2010 fall semester."..
+            "The course is available to students, faculty/staff, alumni and the general public."..
+            "Visitor parking passes are available at the Parking Office located in the University Union."..
+            "Passes are required weekdays from 8 a.m.-4 p.m."..
+            "SRU will host the 2015 World Disc Golf Championships in August of 2015.",     
+            x = width/2,
+            y = height * .30,
+            width = width,     --required for multi-line and alignment
+            font = native.systemFontBold,   
+            fontSize = 48,
+            align = "left"  --new alignment parameter
+        }
 
-    local lookingFor = clickedListLabel
+        local frisbeeInfo = display.newText(options)
+        frisbeeInfo:setFillColor(0,0,0)
+
+        --begin populating holes data
+
+        local lookingFor = clickedListLabel
         local lineNumber = -1
         local toDisplay = {}
         local phoneNumber = ""
 
-        local path = system.pathForFile("recreation.json", system.ResourceDirectory )
+        local path = system.pathForFile("frisbee.json", system.ResourceDirectory )
         local fileContents = ""
         local fileItems = {}
         local file = io.open(path, "r")
@@ -52,73 +75,23 @@ function scene:show( event )
         end
         io.close(file)
 
-        for index = 1,#fileItems["recreation"] do
-            if fileItems["recreation"][index]["name"] == lookingFor then
+        for index = 1,#fileItems["frisbee"] do
                 -- I need to store all the stuff in this line to display
                 lineNumber = index
-                for attribute,value in pairs(fileItems["recreation"][lineNumber]) do
+                for attribute,value in pairs(fileItems["frisbee"][lineNumber]) do
                     toDisplay[#toDisplay + 1] = value
-                    if attribute == "phone" then
-                        phoneNumber = ":tel"..value
                     end
                 end
-                break
             end
         end
 
-        scrollView = widget.newScrollView
-        {
-            x = width/2,
-            y = (height/2) + (height*.1/2),
-            width = width,
-            height = height*.9,
-            scrollWidth = width,
-            scrollHeight = height*.9,
-        }
 
-        local textGroup = {}
 
-        for index = 1, #toDisplay do
-            local options =
-            {
-                text = toDisplay[index],
-                x = width/3,
-                y = index * 55,
-                width = 384,     --required for multi-line and alignment
-                font = native.systemFont,   
-                fontSize = 20,
-                align = "left"  --new alignment parameter
-            }
-            print(options["text"])
-            local text = display.newText(options)
-            text:setTextColor(.5, 0, 0)
-            scrollView:insert(text)
+      
 
-            if index == #toDisplay then
-                options = 
-                {
-                id = "CallButton",
-                label = "Call "..toDisplay[1],
-                x = width/3,
-                y = index * 70,
-                width = 384,
-                height = height * .05,
-                shape = "rect",
-                fontSize = 20,
-                fillColor = { default={ 1, 0.9, 1.0, 0.9 }, over={ 1, 0.2, 0.5, 1 } },
-                strokeColor = { default={ 0, 0, 0, 1 }, over={ 0.8, 0.8, 1, 1 } },
-                strokeWidth = 4,
-                onEvent = system.openURL(phoneNumber)
-                }
-                local callButton = widget.newButton(options)
-                scrollView:insert(callButton)
-            end
-        end
-
-        --sceneGroup:insert(background)
-        sceneGroup:insert(scrollView)
+        sceneGroup:insert(background)
+        sceneGroup:insert(frisbeeInfo)
         sceneGroup:insert(panel)--panel needs to be the last thing inserted!!! Do not insert it earlier!!!
-
     end
 end
 
@@ -135,6 +108,8 @@ function scene:hide( event )
         -- Example: stop timers, stop animation, stop audio, etc.
     elseif ( phase == "did" ) then
         -- Called immediately after scene goes off screen.
+
+
     end
 end
 
