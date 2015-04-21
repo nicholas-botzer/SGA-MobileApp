@@ -92,21 +92,52 @@ function scene:show( event )
             height = height*.9,
             scrollWidth = width,
             scrollHeight = height*.9,
-            backgroundColor = {0.0,1.0,0.0},
+            backgroundColor = {1.0,1.0,1.0},
             horizontalScrollDisabled = true
         }
-        yStart = height *.4
+        yPos = height *.4
+        leftX = -(width/2)
+        rightX = width
         scrollView:insert(frisbeeInfo)
         for x=1,#fileItems["frisbee"] do
 
-           local line = display.newLine(-(width/2),(yStart + (x-1)*150),width,(yStart+(x-1)*150))
-           line:setStrokeColor( 1,0,0 )
+           local line = display.newLine(leftX,yPos,rightX,yPos)
+           line:setStrokeColor( 0,0,0 )
            line.strokeWidth = 8
            scrollView:insert(line)
+
+           yPos = yPos + 40
+           local options = {
+                text = "Hole: ".. fileItems["frisbee"][x]["hole"] .."  Tee: ".. fileItems["frisbee"][x]["tees"] ,
+                x = width/2,
+                y = yPos,
+                width = width,     --required for multi-line and alignment
+                font = native.systemFontBold,   
+                fontSize = 36,
+                align = "left"  --new alignment parameter
+           }
+           local hole = display.newText( options )
+           hole:setFillColor(0.0,0.0,0.0)
+           scrollView:insert(hole)
+           yPos = yPos + 80
+           local options = {
+                text = "Par: ".. fileItems["frisbee"][x]["par"] .."  Basket: ".. fileItems["frisbee"][x]["basket"] ,
+                x = width/2,
+                y = yPos,
+                width = width,     --required for multi-line and alignment
+                font = native.systemFontBold,   
+                fontSize = 36,
+                align = "left"  --new alignment parameter
+           }
+           local par = display.newText(options)
+           par:setFillColor( 0.0 )
+           scrollView:insert(par)
+
+           yPos = yPos + 50
         end
 
 
-      
+        scrollView:setScrollHeight(height + 1000)  --this is realy fucking everything up and needed to be done
 
         sceneGroup:insert(background)
         sceneGroup:insert(scrollView)
