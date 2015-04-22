@@ -24,9 +24,9 @@ buttonList = display.newGroup();
             end
         end
 
-
+        clickedListLabel = event.target:getLabel()
+        
         if phase == "ended" then
-            clickedListLabel = event.target:getLabel()
             if clickedListLabel == "Happy Bus/SGA Shuttle" then
                 composer.gotoScene("happyBus")
             elseif clickedListLabel == "Finals Schedule" then
@@ -34,7 +34,7 @@ buttonList = display.newGroup();
             elseif clickedListLabel == "2 Hour Delay" then
                composer.gotoScene("2hourDelay")
             elseif clickedListLabel == "Frisbee Golf Course" then
-                composer.gotoScene( "frisbeeGolf")
+                composer.gotoScene("frisbeeGolf")
             elseif clickedButtonLabel == "Academics" then
                 composer.gotoScene("academicsPage")
             elseif clickedButtonLabel == "Departments and Offices" then
