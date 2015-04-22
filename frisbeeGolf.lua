@@ -51,7 +51,7 @@ function scene:show( event )
             y = height * .2,
             width = width,     --required for multi-line and alignment
             font = native.systemFontBold,   
-            fontSize = 48,
+            fontSize = width * .04,
             align = "left"  --new alignment parameter
         }
 
@@ -113,7 +113,7 @@ function scene:show( event )
                 y = yPos,
                 width = width,     --required for multi-line and alignment
                 font = native.systemFontBold,   
-                fontSize = 36,
+                fontSize = width * .04,
                 align = "left"  --new alignment parameter
            }
            local hole = display.newText( options )
@@ -126,7 +126,7 @@ function scene:show( event )
                 y = yPos,
                 width = width,     --required for multi-line and alignment
                 font = native.systemFontBold,   
-                fontSize = 36,
+                fontSize = width * .04,
                 align = "left"  --new alignment parameter
            }
            local par = display.newText(options)
@@ -136,6 +136,7 @@ function scene:show( event )
            yPos = yPos + 30
         end
 
+        yPos = yPos + 30
         local line = display.newLine(leftX,yPos,rightX,yPos)
            line:setStrokeColor( 0,0,0 )
            line.strokeWidth = 8
