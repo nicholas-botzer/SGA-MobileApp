@@ -1,0 +1,27 @@
+{"on-campus":[
+	{"name":"Weisenfluh","phone":"724-738-4644","hours":""},
+	{"name":"Boozel","phone":"724-738-4644","hours":"Mon-Thur: 7:00-8:00\nFri:7:00-7:00\nSat-Sun Breakfast: 9:00-10:30\nSat-Sun Brunch: 10:30-2:30\n Sat Dinner: 5:00-7:00\n Sun Dinner: 5:00-8:00"},
+	{"name":"Boozel Express","phone":"724-738-4644","hours":"Mon-Thur: 7:00-9:00\nFri:7:00-7:00\nSat: Closed\nSun: 9:00-9:00"},
+	{"name":"Rocky's","phone":"724-738-4644","hours":"Sun-Thur:11:00-12:00\nFri-Sat: 11:00-10:00"},
+	{"name":"Quaker Steak & Lube","phone":"724-738-4688","hours":"Mon-Thur: 11:00-10:00\nFri-Sat: 11:00-9:00\nSun: 11:00-10:00"},
+	{"name":"Campus Drive Grill","phone":"724-738-4644","hours":"Mon-Fri: 10:30-2:30"},
+	{"name":"Starbuck's Coffee","phone":"N/A","hours":"Mon-Fri: 7:30-9:00\nSat:10:00-4:00\nSun: 10:00-9:00"},
+	{"name":"Flatz Xpress","phone":"724-738-4644","hours":"Mon-Thur: 7:30-2:00  6:00-10:00\nFri: 7:30-2:00"},
+	{"name":"T&B Naturally","phone":"724-738-4644","hours":"Mon-Thur: 7:30-9:00\nFri: 7:30-1:00"}
+],
+"off-campus":[
+	{"name":"Coney Island","phone":"724-794-4899","hours":""},
+	{"name":"Ginger Hill Tavern","phone":"724-794-3504","hours":""},
+	{"name":"North Country Brewery","phone":"724-794-2337","hours":""},
+	{"name":"Red Rock Falls","phone":"724-406-0806","hours":""},
+	{"name":"Camelot","phone":"724-794-5005","hours":""},
+	{"name":"La Famiglia","phone":"724-406-0688","hours":""},
+	{"name":"Coffaro's Pizza","phone":"724-794-2424","hours":""},
+	{"name":"Domino's","phone":"724-794-1599","hours":""},
+	{"name":"Fox's Pizza","phone":"724-794-3266","hours":""},
+	{"name":"Subway","phone":"724-738-1900","hours":""},
+	{"name":"Bob's Subs","phone":"724-794-6799","hours":""},
+	{"name":"Sheetz","phone":"724-794-6001","hours":"24/7"},
+	{"name":"En Lai","phone":"724-794-5100","hours":""},
+	{"name":"McDonald's","phone":"724-794-3235","hours":""}
+]}
