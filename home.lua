@@ -89,7 +89,8 @@ panel = widget.newPanel{
                 end
             elseif clickedButtonLabel == "SGA Feedback" then
                composer.gotoScene("feedback")
-            else
+               panel:hide()
+               panelOpen = 0            else
                 composer.gotoScene("listSelection")
                 panel:hide()
                 panelOpen = 0

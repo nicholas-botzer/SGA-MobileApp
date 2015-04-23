@@ -170,6 +170,9 @@ function scene:show( event )
         feedbackView:insert(feedbackBox)
         feedbackView:insert(sendButton)
 
+        sceneGroup:insert(feedbackView)
+        sceneGroup:insert(panel)
+
 
 
     end
