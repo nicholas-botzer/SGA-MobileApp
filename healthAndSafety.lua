@@ -44,7 +44,7 @@ function scene:show( event )
         local toDisplay = {}
         local phoneNumber = ""
 
-        local path = system.pathForFile("healthandsafety.json", system.ResourceDirectory )
+        local path = system.pathForFile("healthAndSafety.json", system.ResourceDirectory )
         local fileContents = ""
         local fileItems = {}
         local file = io.open(path, "r")
@@ -59,9 +59,17 @@ function scene:show( event )
                 -- I need to store all the stuff in this line to display
                 lineNumber = index
                 for attribute,value in pairs(fileItems["healthandsafety"][lineNumber]) do
-                    toDisplay[#toDisplay + 1] = value
-                    if attribute == "phone" then
+                    if attribute == "name" then
+                        toDisplay[1] = value
+                    elseif attribute == "phone" then
+                        toDisplay[2] = value
                         phoneNumber = ":tel"..value
+                    elseif attribute == "fax" then
+                        toDisplay[3] = value
+                    elseif attribute == "location" then
+                        toDisplay[4] = value
+                    elseif attribute == "hours" then
+                        toDisplay[5] = value
                     end
                 end
                 break
@@ -139,7 +147,7 @@ function scene:show( event )
         {
             id = "CallButton",
             defaultFile = "phoneButton.png",
-            overFile = "phoneButton.png",
+            overFile = "phoneButtonClicked.png",
             x = width/4,
             y = yPos,
             width = width/2,
@@ -165,7 +173,7 @@ function scene:show( event )
         faxText:setFillColor( 0,0,0 )
 
 
-        yPos = yPos + 200
+        yPos = yPos + 220
         local hoursOpts = {
 
             x = width/2,
