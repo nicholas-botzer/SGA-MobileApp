@@ -24,34 +24,42 @@ buttonList = display.newGroup();
             end
         end
 
+        clickedListLabel = event.target:getLabel()
+        
         if phase == "ended" then
-            clickedListLabel = event.target:getLabel()
             if clickedListLabel == "Happy Bus/SGA Shuttle" then
                 composer.gotoScene("happyBus")
             elseif clickedListLabel == "Finals Schedule" then
                 composer.gotoScene("finals")
+            elseif clickedListLabel == "2 Hour Delay" then
+               composer.gotoScene("2hourDelay")
+            elseif clickedListLabel == "Frisbee Golf Course" then
+                composer.gotoScene("frisbeeGolf")
             elseif clickedButtonLabel == "Academics" then
                 composer.gotoScene("academicsPage")
             elseif clickedButtonLabel == "Departments and Offices" then
                 composer.gotoScene("departmentsPage")
             elseif clickedButtonLabel == "Emergency Services" then
                 composer.gotoScene("emergencyServices")
-            elseif clickedButtonLabel == "Clubs and Organizations" then
-                --composer.gotoScene("")
             elseif clickedButtonLabel == "Communication" then
                 --composer.gotoScene("")
-            elseif clickedButtonLabel == "Dining" then
-                --composer.gotoScene("")
+            elseif clickedListLabel == "On-Campus" then
+                composer.gotoScene("dining")
+			elseif clickedListLabel == "Off-Campus" then
+                composer.gotoScene("dining")
             elseif clickedButtonLabel == "Events" then
                -- composer.gotoScene("")
             elseif clickedButtonLabel == "Health and Safety" then
-               -- composer.gotoScene("")
+                composer.gotoScene("healthAndSafety")
+            elseif clickedButtonLabel == "Residence Life" then
+                composer.gotoScene("residenceLife")
+
             elseif clickedButtonLabel == "Recreation" then
-               -- composer.gotoScene("")
+                composer.gotoScene("recreation")
             elseif clickedButtonLabel == "About" then
                -- composer.gotoScene("")
             elseif clickedButtonLabel == "SGA Feedback" then
-               -- composer.gotoScene("")
+               composer.gotoScene("feedback")
             end
              panel:hide()
             panelOpen = 0
@@ -86,8 +94,20 @@ function scene:show( event )
         local matchedLine
         local path = system.pathForFile("panelItems.txt", system.ResourceDirectory )
         local panelPopFile = io.open(path, "r")
+
+        local matchedCategory = ""
         for item in panelPopFile:lines() do
-            if ( item:match(clickedButtonLabel) ) then
+
+            local cnt = 1
+            for i in string.gmatch(item,  "([^"..":::".."]+)") do
+                --store only the first string in a line to prevent accidental matching
+                if cnt == 1 then
+                    matchedCategory = i
+                end
+                cnt = cnt + 1
+            end
+
+            if ( matchedCategory:match(clickedButtonLabel) ) then
                 matchedLine = item
             end
         end
@@ -104,8 +124,8 @@ function scene:show( event )
             y = (height/2) + (height*.1/2),
             width = width,
             height = height*.9,
-            scrollWidth = width,
             scrollHeight = height*.9,
+            horizontalScrollDisabled = true
         }
 
 

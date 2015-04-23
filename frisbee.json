@@ -1,0 +1,11 @@
+{"frisbee":[
+	{"hole":"1", "par":"3", "tees":"Directly North of Building F", "basket":"Going up hill."},
+	{"hole":"2", "par":"4", "tees":"On the hill behind Building F", "basket":"Directly South by the woods."},
+	{"hole":"3", "par":"3", "tees":"Walk West across parking lot. Tees North of the pond", "basket":"By Willow Tree."},
+	{"hole":"4", "par":"3", "tees":"Walking path bridge along the stream next to the ARC", "basket":"South next to pond."},
+	{"hole":"5", "par":"4", "tees":"Next to the ARC", "basket":"North around the Soccer Field."},
+	{"hole":"6", "par":"5", "tees":"Walk across the Stadium parking lot.Start on the hill left of the Stadium", "basket":"Up hill, around the fence."},
+	{"hole":"7", "par":"3", "tees":"Tees of the very top of the hill.", "basket":"Directly North on ridge above rugby field."},
+	{"hole":"8", "par":"4", "tees":"East of rugby fields, runs North parallel to Harmony Rd.", "basket":"Close to new Intramural Fields."},
+	{"hole":"9", "par":"3", "tees":"East from hole 8.", "basket":"Down hill South of climbing tower and North of LRC."}
+]}

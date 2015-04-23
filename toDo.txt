@@ -1,0 +1,25 @@
+To Do
+Nick
+-Home page
+-SGA Feedback --test and fix
+Aaron
+-Fix any formatting issues
+Alex
+-Page loading with information formatting
+-Ensure you can call from within
+-Do Communications pages ( just have it open to web links and load in the user's browser)
+Quentin
+-Health and Safety
+-Residence Life
+-About
+
+
+
+
+Done
+-Side Panel Scrolling
+-Departments and Offices
+-Academics
+-Dining Page
+-Two hour delay scedule
+-Look into Events and Rec loading same thing -- done

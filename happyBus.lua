@@ -35,7 +35,7 @@ function scene:show( event )
         -- Example: start timers, begin animation, play audio, etc.
         local happyBusSchedule = display.newImageRect( "happyBus.jpg", width, height*.9 )
         happyBusSchedule.x = width/2
-        happyBusSchedule.y = (height*.9)/2 + height *.1
+        happyBusSchedule.y = (height*.9)/2 + (height *.1)
 
         sceneGroup:insert(happyBusSchedule)
         sceneGroup:insert(panel)--panel needs to be the last thing inserted!!! Do not insert it earlier!!!

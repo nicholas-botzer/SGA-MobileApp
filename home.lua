@@ -65,7 +65,18 @@ panel = widget.newPanel{
 
         clickedButtonLabel = event.target:getLabel()
         barTitle.text = clickedButtonLabel
-        if event.phase == "ended" then
+
+        local phase = event.phase
+        if ( phase == "moved" ) then
+            local dy = math.abs( ( event.y - event.yStart ) )
+        -- If the touch on the button has moved more than 10 pixels,
+        -- pass focus back to the scroll view so it can continue scrolling
+            if ( dy > 10 ) then
+                panelScrollView:takeFocus( event )
+            end
+        end 
+
+        if phase == "ended" then
             if clickedButtonLabel == "Home" then
                 local sceneName = composer.getSceneName( "current" )
                 if sceneName == "home" then
@@ -76,7 +87,10 @@ panel = widget.newPanel{
                     panel:hide()
                     panelOpen = 0
                 end
-            else
+            elseif clickedButtonLabel == "SGA Feedback" then
+               composer.gotoScene("feedback")
+               panel:hide()
+               panelOpen = 0            else
                 composer.gotoScene("listSelection")
                 panel:hide()
                 panelOpen = 0
@@ -142,29 +156,29 @@ function scene:show( event )
 
         local options = 
         {
-            --x = 0,
-            --y = -(height/2 - height*.15),
-            left = -(panel.width / 2),
-            top = -(panel.height / 2.6),
+            x = panel.width/2,
+            y = panel.height * .15 + 30,
             id = "",
             label = "",
             labelAlign = "center",
             width = panel.width,
-            height = panel.height / #panelPopLines - 7,
+            height = (panel.height / #panelPopLines - 7) + 60,
 			onEvent = handleList
         }
 
-        --[[panelScrollView = widget.newScrollView
+        panelScrollView = widget.newScrollView
         {
-            top = panel.height/2,
-            left = panel.width * .6,
+            x = 0,
+            y=0,
             width = panel.width,
             height = panel.height,
-            scrollWidth = panel.width,
             scrollHeight = panel.height,
-            listener = scrollListener
-        }]]--
+            listener = scrollListener,
+            backgroundColor = {0.5},
+            horizontalScrollDisabled = true
+        }
 
+        
         local itemCount = 1
         for i = 1,#panelPopItems do
             for j = 1,#panelPopItems[i] do
@@ -172,10 +186,8 @@ function scene:show( event )
                 options.label = panelPopItems[i][j]
                 local item = widget.newButton(options)
                 item._view._label.size = 34
-                --panelScrollView:insert(item)
-                panelItems:insert(item)
-                --options.y = options.y + panel.height *.1
-                options.top = options.top + 80
+                panelScrollView:insert(item)
+                options.y = options.y + (panel.height / #panelPopLines - 7) + 60
                 itemCount = itemCount + 1
             end
         end
@@ -212,15 +224,11 @@ function scene:show( event )
          })
 
 
-        panel.background = display.newRect(0,0,panel.width,panel.height)
-        panel.background:setFillColor( 0.5)
-        panel:insert(panel.background)
-
         --Adding all the buttons to change between scenes for the panel
         
-
-        panel:insert(panelItems)
-        --panel:insert(panelScrollView)
+        panelScrollView:setScrollHeight( height + 1300)  --this is realy fucking everything up and needed to be done
+        --panel:insert(panelItems)
+        panel:insert(panelScrollView)
         --Add all the objects in the scene at the end
 
         sceneGroup:insert(background)
