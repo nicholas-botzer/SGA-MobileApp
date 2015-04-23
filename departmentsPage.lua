@@ -86,47 +86,119 @@ function scene:show( event )
             scrollHeight = height*.9,
         }
 
-        local textGroup = {}
+       yPos = height *.1
+        local titleOpts = {
 
-        for index = 1, #toDisplay do
-            local options =
-            {
-                text = toDisplay[index],
-                x = width/3,
-                y = index * 55,
-                width = 384,     --required for multi-line and alignment
-                font = native.systemFont,   
-                fontSize = 30,
-                align = "left"  --new alignment parameter
-            }
-            print(options["text"])
-            local text = display.newText(options)
-            text:setTextColor(.5, 0, 0)
-            scrollView:insert(text)
+            x = width/2,
+            y = yPos,
+            text = toDisplay[1],
+            width = width,     --required for multi-line and alignment
+            font = native.systemFontBold,   
+            fontSize = width * .07,
+            align = "center"  --new alignment parameter
 
-            if index == #toDisplay then
-                options = 
-                {
-                id = "CallButton",
-                label = "Call "..toDisplay[1],
-                x = width/3,
-                y = index * 70,
-                width = 384,
-                height = height * .05,
-                shape = "rect",
-                fontSize = 20,
-                fillColor = { default={ 1, 0.9, 1.0, 0.9 }, over={ 1, 0.2, 0.5, 1 } },
-                strokeColor = { default={ 0, 0, 0, 1 }, over={ 0.8, 0.8, 1, 1 } },
-                strokeWidth = 4,
-                onEvent = system.openURL(phoneNumber)
-                }
-                local callButton = widget.newButton(options)
-                scrollView:insert(callButton)
-            end
+        }
+
+        local titleText = display.newText( titleOpts )
+        titleText:setFillColor( 0,0,0 )
+
+        yPos = yPos + 80
+
+        local header = display.newLine( 0,yPos, width, yPos )
+        header:setStrokeColor( 0,0,0 )
+        header.strokeWidth = 8
+
+        yPos = yPos + 100
+
+        local locationOpts = {
+
+            x = width/2,
+            y = yPos,
+            text = "Location: "..toDisplay[4],
+            width = width,     --required for multi-line and alignment
+            font = native.systemFontBold,
+            fontSize = width * .05,
+            align = "left"  --new alignment parameter
+        }
+
+        local locationText = display.newText( locationOpts )
+        locationText:setFillColor( 0,0,0 )
+
+        yPos = yPos + 100
+
+        local phoneOpts = {
+
+            x = width/2,
+            y = yPos,
+            text = "Phone: "..toDisplay[2],
+            width = width,     --required for multi-line and alignment
+            font = native.systemFontBold,
+            fontSize = width * .05,
+            align = "left"  --new alignment parameter
+        }
+
+        local phoneText = display.newText( phoneOpts )
+        phoneText:setFillColor( 0,0,0 )
+
+        yPos = yPos + height * .1
+        local callOptions = 
+        {
+            id = "CallButton",
+            label = "Call ",
+            x = width/4 + 20,
+            y = yPos,
+            width = width/2,
+            height = height * .15,
+            shape = "rect",
+            fontSize = width * .045,
+            fillColor = { default={ 1, 0.9, 1.0, 0.9 }, over={ 1, 0.2, 0.5, 1 } },
+            strokeColor = { default={ 0, 0, 0, 1 }, over={ 0.8, 0.8, 1, 1 } },
+            strokeWidth = 4,
+            onEvent = system.openURL(phoneNumber)
+        }
+        local callButton = widget.newButton(callOptions)
+
+        yPos = yPos + 100 + height * .075
+
+        local faxOpts = {
+
+            x = width/2,
+            y = yPos,
+            text = "Fax: "..toDisplay[3],
+            width = width,     --required for multi-line and alignment
+            font = native.systemFontBold,
+            fontSize = width * .05,
+            align = "left"  --new alignment parameter
+        }
+
+        local faxText = display.newText( faxOpts )
+        faxText:setFillColor( 0,0,0 )
+
+
+        yPos = yPos + 200
+        --[[
+        local hoursOpts = {
+
+            x = width/2,
+            y = yPos,
+            text = "Hours: \n"..toDisplay[5],
+            width = width,     --required for multi-line and alignment
+            font = native.systemFontBold,
+            fontSize = width * .05,
+            align = "left"  --new alignment parameter
+        }
+
+        local hoursText = display.newText( hoursOpts )
+        hoursText:setFillColor( 0,0,0 )]]
 
             
 
-        end
+        scrollView:insert(titleText)
+        scrollView:insert(header)
+        scrollView:insert(locationText)
+        scrollView:insert(phoneText)
+        scrollView:insert(callButton)
+        scrollView:insert(faxText)
 
         
 
