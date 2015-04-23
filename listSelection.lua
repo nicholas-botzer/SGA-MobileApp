@@ -56,7 +56,7 @@ buttonList = display.newGroup();
             elseif clickedButtonLabel == "About" then
                -- composer.gotoScene("")
             elseif clickedButtonLabel == "SGA Feedback" then
-               -- composer.gotoScene("")
+               composer.gotoScene("feedback")
             end
              panel:hide()
             panelOpen = 0
