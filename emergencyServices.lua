@@ -147,16 +147,12 @@ function scene:show( event )
         local callOptions = 
         {
             id = "CallButton",
-            label = "Call ",
-            x = width/4 + 20,
+            defaultFile = "phoneButton.png",
+            overFile = "phoneButton.png",
+            x = width/4,
             y = yPos,
             width = width/2,
-            height = height * .15,
-            shape = "rect",
-            fontSize = width * .045,
-            fillColor = { default={ 1, 0.9, 1.0, 0.9 }, over={ 1, 0.2, 0.5, 1 } },
-            strokeColor = { default={ 0, 0, 0, 1 }, over={ 0.8, 0.8, 1, 1 } },
-            strokeWidth = 4,
+            height = height * .1,    
             onEvent = system.openURL(phoneNumber)
         }
         local callButton = widget.newButton(callOptions)
