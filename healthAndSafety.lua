@@ -97,23 +97,21 @@ function scene:show( event )
             scrollView:insert(text)
 
             if index == #toDisplay then
-                options = 
-                {
+            options = 
+            {
                 id = "CallButton",
-                label = "Call "..toDisplay[1],
-                x = width/3,
+                defaultFile = "phoneButton.png",
+                overFile = "phoneButton.png",
+                x = width/5,
                 y = index * 70,
-                width = 384,
+                width = 200,
                 height = height * .05,
-                shape = "rect",
-                fontSize = 20,
-                fillColor = { default={ 1, 0.9, 1.0, 0.9 }, over={ 1, 0.2, 0.5, 1 } },
-                strokeColor = { default={ 0, 0, 0, 1 }, over={ 0.8, 0.8, 1, 1 } },
-                strokeWidth = 4,
+                
                 onEvent = system.openURL(phoneNumber)
-                }
-                local callButton = widget.newButton(options)
-                scrollView:insert(callButton)
+            }
+
+            local callButton = widget.newButton(options)
+            scrollView:insert(callButton)
             end
         end
 
