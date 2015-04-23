@@ -6,9 +6,9 @@ Departments and Offices:::Res Life:::Student Intervention Services:::Office of D
 Communication:::The Rocket:::RockPride:::Social Media
 Dining:::On-Campus:::Off-Campus
 Events:::SGA Movie Series:::Sports Events
-Health and Safety:::Health Center:::Counselling Center:::University Police:::Policies
+Health and Safety:::Health Center:::Counselling Center:::Policies
 Recreation:::ARC:::Intercollegiate Athletics:::Intramural Sports:::Sports Events:::Frisbee Golf Course
 Residence Life:::Contact Info:::FAQ
 Transportation:::Happy Bus/SGA Shuttle
-About:::Original Developers:::Current Developers:::Description:::Issues/Bug Report
+About:::Original Developers:::Current Developers:::Description
 SGA Feedback

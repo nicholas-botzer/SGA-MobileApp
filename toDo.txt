@@ -14,10 +14,8 @@ Alex
 -Ensure you can call from within
 Quentin
 -Health and Safety
--Remove University police from health and safety
 -Residence Life
 -About
--Remove Issues/Bug Report
 
 
 
@@ -25,3 +23,5 @@ Done
 -Side Panel Scrolling
 -Departments and Offices
 -Academics
+-Remove University police from health and safety
+-Remove Issues/Bug Report

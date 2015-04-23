@@ -50,7 +50,10 @@ buttonList = display.newGroup();
             elseif clickedButtonLabel == "Events" then
                -- composer.gotoScene("")
             elseif clickedButtonLabel == "Health and Safety" then
-               -- composer.gotoScene("")
+                composer.gotoScene("healthAndSafety")
+            elseif clickedButtonLabel == "Residence Life" then
+                composer.gotoScene("residenceLife")
+
             elseif clickedButtonLabel == "Recreation" then
                 composer.gotoScene("recreation")
             elseif clickedButtonLabel == "About" then
