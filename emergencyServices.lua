@@ -148,7 +148,7 @@ function scene:show( event )
         {
             id = "CallButton",
             defaultFile = "phoneButton.png",
-            overFile = "phoneButton.png",
+            overFile = "phoneButtonClicked.png",
             x = width/4,
             y = yPos,
             width = width/2,

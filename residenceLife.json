@@ -1,8 +1,4 @@
 {"residenceLife":[
-	{"name":"Health Center","phone":"724-738-2052","fax":"724-738-2078","location":"Rhoads Hall","hours":"24/7 Nurse Evaluation"},
-	{"name":"Tutorial Center","phone":"724-738-2058","fax":"N/A","location":"Library","hours":"Mon-Thur: 9:00-9:00\nFri: 9:00-4:30-n Sat-Sun: Closed"},
-	{"name":"Writing Center","phone":"724-738-2058","fax":"N/A","location":"Library","hours":"Mon,Wed-Fri: 9:00-6:00"},
-	{"name":"Technology Learning Center","phone":"724-738-2058","fax":"N/A","location":"Library","hours":"Mon-Thur: 7:45-11:00\nFri: 7:45-5:00\nSat: 9:00-5:00\nSun: 1:00-11:00"},
-	{"name":"Career Services","phone":"724-738-2058","fax":"N/A","location":"Library","hours":"Fall & Spring: 8:00-4:30 Evenings: By Appt\nSummer: 8:00-4:00"},
-	{"name":"Finals Schedule","phone":"N/A","fax":"N/A","location":"Library","hours":"N/A"}
+	{"name":"Contact Info","phone":"724-738-2052","fax":"724-738-2078","location":"Rhoads Hall","hours":"24/7 Nurse Evaluation"},
+	{"name":"FAQ","phone":"724-738-2058","fax":"N/A","location":"Library","hours":"Mon-Thur: 9:00-9:00\nFri: 9:00-4:30-n Sat-Sun: Closed"},
 ]}
