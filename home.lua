@@ -114,6 +114,7 @@ function scene:create( event )
 
     -- Initialize the scene here.
     -- Example: add display objects to "sceneGroup", add touch listeners, etc.
+
 end
 
 
@@ -198,6 +199,10 @@ function scene:show( event )
         background.y = height/2
         background:setFillColor( 1,1,1 )
 
+        local myImage = display.newImage ( "sru.png")
+        myImage:scale(2,2)
+        myImage.x = width/2
+        myImage.y = height/2
 
 
         --The leftButton can be changed to be an image if desired
@@ -232,6 +237,7 @@ function scene:show( event )
         --Add all the objects in the scene at the end
 
         sceneGroup:insert(background)
+        sceneGroup:insert(myImage)
         sceneGroup:insert(panel)--panel needs to be the last thing inserted!!! Do not insert it earlier!!!
     end
 end
