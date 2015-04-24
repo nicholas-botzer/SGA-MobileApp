@@ -53,11 +53,10 @@ buttonList = display.newGroup();
                 composer.gotoScene("healthAndSafety")
             elseif clickedButtonLabel == "Residence Life" then
                 composer.gotoScene("residenceLife")
-
             elseif clickedButtonLabel == "Recreation" then
                 composer.gotoScene("recreation")
             elseif clickedButtonLabel == "About" then
-               -- composer.gotoScene("")
+                composer.gotoScene("about")
             elseif clickedButtonLabel == "SGA Feedback" then
                composer.gotoScene("feedback")
             end

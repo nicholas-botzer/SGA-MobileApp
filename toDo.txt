@@ -9,14 +9,14 @@ Alex
 -Ensure you can call from within
 -Do Communications pages ( just have it open to web links and load in the user's browser)
 Quentin
--Health and Safety
 -Residence Life
--About
 
 
-
+-We need Policies from somewhere still.
 
 Done
+-About
+-Health and Saftey done except Policies
 -Side Panel Scrolling
 -Departments and Offices
 -Academics
