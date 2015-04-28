@@ -42,7 +42,7 @@ buttonList = display.newGroup();
             elseif clickedButtonLabel == "Emergency Services" then
                 composer.gotoScene("emergencyServices")
             elseif clickedButtonLabel == "Communication" then
-                --composer.gotoScene("")
+                composer.gotoScene("communication")
             elseif clickedListLabel == "On-Campus" then
                 composer.gotoScene("dining")
 			elseif clickedListLabel == "Off-Campus" then
