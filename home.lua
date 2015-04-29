@@ -186,7 +186,7 @@ function scene:show( event )
                 options.id = "panelItem" .. itemCount
                 options.label = panelPopItems[i][j]
                 local item = widget.newButton(options)
-                item._view._label.size = 34
+                item._view._label.size = width *.045
                 panelScrollView:insert(item)
                 options.y = options.y + (panel.height / #panelPopLines - 7) + 60
                 itemCount = itemCount + 1
