@@ -64,7 +64,7 @@ panel = widget.newPanel{
 	local function handleList(event)
 
         clickedButtonLabel = event.target:getLabel()
-        barTitle.text = clickedButtonLabel
+        
 
         local phase = event.phase
         if ( phase == "moved" ) then
@@ -77,6 +77,7 @@ panel = widget.newPanel{
         end 
 
         if phase == "ended" then
+            barTitle.text = clickedButtonLabel
             if clickedButtonLabel == "Home" then
                 local sceneName = composer.getSceneName( "current" )
                 if sceneName == "home" then
