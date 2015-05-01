@@ -27,6 +27,8 @@ local function textListener( event )
         print( event.oldText )
         print( event.startPosition )
         print( event.text )
+
+        name = event.text
     end
 end
 
@@ -44,17 +46,21 @@ local function inputListener( event )
         print( event.oldText )
         print( event.startPosition )
         print( event.text )
+
+        feedback = event.text
+
     end
 end
 
 local function handleButtonEvent(event)
 
+
     if ( "ended" == event.phase ) then
         local options =
         {
             to = "nab1001@sru.edu",
-            subject = "Testing",
-            body = "this is a test",
+            subject = "SGA Feedback",
+            body = "Hello SGA this is "..name..", \n"..feedback,
         }
         native.showPopup("mail", options)
     end
