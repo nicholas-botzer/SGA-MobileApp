@@ -176,7 +176,7 @@ function scene:show( event )
             height = panel.height,
             scrollHeight = panel.height,
             listener = scrollListener,
-            backgroundColor = {0.5},
+            backgroundColor = {0.5,0.5,0.5,0.4},
             horizontalScrollDisabled = true
         }
 
@@ -187,6 +187,7 @@ function scene:show( event )
                 options.id = "panelItem" .. itemCount
                 options.label = panelPopItems[i][j]
                 local item = widget.newButton(options)
+                item:setFillColor(0,0.8,0,0.3)
                 item._view._label.size = width *.045
                 panelScrollView:insert(item)
                 options.y = options.y + (panel.height / #panelPopLines - 7) + 60

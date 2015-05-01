@@ -13,7 +13,7 @@ local scene = composer.newScene()
 
 -- -------------------------------------------------------------------------------
 
-function callNumber(event)
+function callNumber(event,phoneNumber)
 
     local phase = event.phase
     if(phase == "ended") then
@@ -161,7 +161,7 @@ function scene:show( event )
             y = yPos,
             width = width/2,
             height = height * .15,
-            onPress = callNumber
+            onTap = callNumber
         }
         local callButton = widget.newButton(callOptions)
 

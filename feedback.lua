@@ -202,6 +202,8 @@ function scene:destroy( event )
 
     local sceneGroup = self.view
 
+    
+
     -- Called prior to the removal of scene's view ("sceneGroup").
     -- Insert code here to clean up the scene.
     -- Example: remove display objects, save state, etc.
