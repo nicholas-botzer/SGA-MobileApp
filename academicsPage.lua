@@ -13,6 +13,14 @@ local scene = composer.newScene()
 
 -- -------------------------------------------------------------------------------
 
+function callNumber(event)
+
+    local phase = event.phase
+    if(phase == "ended") then
+        system.openURL(phoneNumber)
+    end
+
+end
 
 -- "scene:create()"
 function scene:create( event )
@@ -153,7 +161,7 @@ function scene:show( event )
             y = yPos,
             width = width/2,
             height = height * .15,
-            onEvent = system.openURL(phoneNumber)
+            onPress = callNumber
         }
         local callButton = widget.newButton(callOptions)
 

@@ -16,38 +16,34 @@ local function textListener( event )
 
     if ( event.phase == "began" ) then
         -- user begins editing defaultField
-        print( event.text )
 
     elseif ( event.phase == "ended" or event.phase == "submitted" ) then
         -- do something with defaultField text
-        native.showAlert( "Corona", event.target.text)
 
     elseif ( event.phase == "editing" ) then
-        print( event.newCharacters )
-        print( event.oldText )
-        print( event.startPosition )
-        print( event.text )
-
+        
         name = event.text
+        if name == nil then
+            name = "Anonymous"
+        end
     end
 end
 
 local function inputListener( event )
     if event.phase == "began" then
         -- user begins editing textBox
-        print( event.text )
+
 
     elseif event.phase == "ended" then
         -- do something with textBox text
-        print( event.target.text )
+
 
     elseif event.phase == "editing" then
-        print( event.newCharacters )
-        print( event.oldText )
-        print( event.startPosition )
-        print( event.text )
 
         feedback = event.text
+        if feedback == nil then
+            feedback = "Hmmm. They didn't seem to write any feedback."
+        end
 
     end
 end
