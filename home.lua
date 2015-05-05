@@ -233,7 +233,7 @@ function scene:show( event )
 
         --Adding all the buttons to change between scenes for the panel
         
-        panelScrollView:setScrollHeight( height + 1300)  --this is realy fucking everything up and needed to be done
+        panelScrollView:setScrollHeight( (#panelPopItems + 1) * 60  + panelHeight)
         --panel:insert(panelItems)
         panel:insert(panelScrollView)
         --Add all the objects in the scene at the end
