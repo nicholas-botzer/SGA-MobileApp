@@ -25,13 +25,15 @@ buttonList = display.newGroup();
         end
 
         clickedListLabel = event.target:getLabel()
+        native.showAlert( "testing", clickedListLabel )
+
         
         if phase == "ended" then
             if clickedListLabel == "Happy Bus/SGA Shuttle" then
                 composer.gotoScene("happyBus")
             elseif clickedListLabel == "Finals Schedule" then
                 composer.gotoScene("finals")
-            elseif clickedListLabel == "2 Hour Delay" then
+            elseif clickedListLabel == "2HourDelay" then
                composer.gotoScene("2hourDelay")
             elseif clickedListLabel == "Frisbee Golf Course" then
                 composer.gotoScene("frisbeeGolf")
