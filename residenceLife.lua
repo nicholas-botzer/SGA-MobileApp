@@ -163,7 +163,7 @@ function scene:show( event )
                 y = yPos,
                 width = width/4,
                 height = height * .2,
-                onPress = callNumber,
+                onRelease = callNumber,
             }
             local callButton = widget.newButton(callOptions)
 
