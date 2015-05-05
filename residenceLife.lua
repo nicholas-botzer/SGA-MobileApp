@@ -12,7 +12,12 @@ local scene = composer.newScene()
 -- local forward references should go here
 
 -- -------------------------------------------------------------------------------
+function callNumber(event)
 
+
+    system.openURL( phoneNumber )
+
+end
 
 -- "scene:create()"
 function scene:create( event )
@@ -42,7 +47,7 @@ function scene:show( event )
         local lookingFor = clickedListLabel
         local lineNumber = -1
         local toDisplay = {}
-        local phoneNumber = ""
+        phoneNumber = ""
         local urlFlag = false
 
         local path = system.pathForFile("residenceLife.json", system.ResourceDirectory )
@@ -156,9 +161,9 @@ function scene:show( event )
                 overFile = "phoneButtonClicked.png",
                 x = width/4 + 20,
                 y = yPos,
-                width = width/2,
+                width = width/4,
                 height = height * .2,
-                onEvent = system.openURL(phoneNumber)
+                onPress = callNumber,
             }
             local callButton = widget.newButton(callOptions)
 
@@ -196,6 +201,7 @@ function scene:show( event )
         sceneGroup:insert(scrollView)
         sceneGroup:insert(panel)--panel needs to be the last thing inserted!!! Do not insert it earlier!!!
     end
+    return true
 end
 
 
