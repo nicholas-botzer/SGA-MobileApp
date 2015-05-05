@@ -13,12 +13,10 @@ local scene = composer.newScene()
 
 -- -------------------------------------------------------------------------------
 
-function callNumber(event,phoneNumber)
+function callNumber(event)
 
-    local phase = event.phase
-    if(phase == "ended") then
-        system.openURL(phoneNumber)
-    end
+
+    system.openURL( phoneNumber )
 
 end
 
@@ -50,7 +48,7 @@ function scene:show( event )
         local lookingFor = clickedListLabel
         local lineNumber = -1
         local toDisplay = {}
-        local phoneNumber = ""
+        phoneNumber = ""
 
         local path = system.pathForFile("academics.json", system.ResourceDirectory )
         local fileContents = ""
@@ -161,7 +159,7 @@ function scene:show( event )
             y = yPos,
             width = width/2,
             height = height * .15,
-            onTap = callNumber
+            onPress = callNumber
         }
         local callButton = widget.newButton(callOptions)
 

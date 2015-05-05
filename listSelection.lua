@@ -25,7 +25,6 @@ buttonList = display.newGroup();
         end
 
         clickedListLabel = event.target:getLabel()
-        native.showAlert( "testing", clickedListLabel )
 
         
         if phase == "ended" then
