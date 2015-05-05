@@ -143,9 +143,9 @@ function scene:show( event )
                 height = height * .15,
                 shape = "rect",
                 fontSize = width * .05,
-                fillColor = { default={ 1, 0.9, 1.0, 0.9 }, over={ 1, 0.2, 0.5, 1 } },
-                strokeColor = { default={ 0, 0, 0, 1 }, over={ 0.8, 0.8, 1, 1 } },
-                strokeWidth = 4,
+                fillColor = { default={ 0, 0.55, 0, 0.2 }, over={ 0, 1, 0, 0 } },
+                strokeColor = { default={ 0, 0.5, 0.3, 1 }, over={ 0.8, 0.8, 1, 1 } },
+                strokeWidth = 10,
                 onEvent = handleListChoice
             }
             local button = widget.newButton(options)

@@ -176,7 +176,7 @@ function scene:show( event )
             height = panel.height,
             scrollHeight = panel.height,
             listener = scrollListener,
-            backgroundColor = {0.5,0.5,0.5,0.4},
+            backgroundColor = {0.5,0.5,0.5,0.9},
             horizontalScrollDisabled = true
         }
 
