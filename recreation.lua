@@ -11,7 +11,12 @@ local scene = composer.newScene()
 -- local forward references should go here
 
 -- -------------------------------------------------------------------------------
+function callNumber(event)
 
+
+    system.openURL( phoneNumber )
+
+end
 
 -- "scene:create()"
 function scene:create( event )
@@ -40,7 +45,7 @@ function scene:show( event )
     local lookingFor = clickedListLabel
         local lineNumber = -1
         local toDisplay = {}
-        local phoneNumber = ""
+        phoneNumber = ""
 
         local path = system.pathForFile("recreation.json", system.ResourceDirectory )
         local fileContents = ""
@@ -150,7 +155,7 @@ function scene:show( event )
             width = width/2,
             height = height * .15,
             
-            onEvent = system.openURL(phoneNumber)
+            onPress = callNumber
         }
         local callButton = widget.newButton(callOptions)
 
