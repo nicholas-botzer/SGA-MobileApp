@@ -13,6 +13,11 @@ local scene = composer.newScene()
 
 -- -------------------------------------------------------------------------------
 
+function callNumber(event)
+
+    system.openURL( phoneNumber )
+
+end
 
 -- "scene:create()"
 function scene:create( event )
@@ -42,7 +47,7 @@ function scene:show( event )
         local lookingFor = clickedListLabel
         local lineNumber = -1
         local toDisplay = {}
-        local phoneNumber = ""
+        phoneNumber = ""
         local info = {}
 
         local path = system.pathForFile("dining.json", system.ResourceDirectory )
@@ -147,7 +152,7 @@ function scene:show( event )
                     y = yPos,
                     width = width/2,
                     height = height * .15,
-                    onEvent = system.openURL(phoneNumber)
+                    onPress = callNumber
                 }
                 local callButton = widget.newButton(callOptions)
 
@@ -246,7 +251,7 @@ function scene:show( event )
                     y = yPos,
                     width = width/2,
                     height = height * .15,
-                    onEvent = system.openURL(phoneNumber)
+                    onPress = callNumber
                 }
                 local callButton = widget.newButton(callOptions)
 

@@ -15,7 +15,6 @@ local scene = composer.newScene()
 
 function callNumber(event)
 
-
     system.openURL( phoneNumber )
 
 end

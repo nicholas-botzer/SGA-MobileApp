@@ -13,6 +13,12 @@ local scene = composer.newScene()
 
 -- -------------------------------------------------------------------------------
 
+function callNumber(event)
+
+    system.openURL( phoneNumber )
+
+end
+
 
 -- "scene:create()"
 function scene:create( event )
@@ -42,7 +48,7 @@ function scene:show( event )
         local lookingFor = clickedListLabel
         local lineNumber = -1
         local toDisplay = {}
-        local phoneNumber = ""
+        phoneNumber = ""
 
         local path = system.pathForFile("healthAndSafety.json", system.ResourceDirectory )
         local fileContents = ""
@@ -152,7 +158,7 @@ function scene:show( event )
             y = yPos,
             width = width/2,
             height = height * .1,    
-            onEvent = system.openURL(phoneNumber)
+            onPress = callNumber
         }
         local callButton = widget.newButton(callOptions)
 
