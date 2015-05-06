@@ -1,12 +1,12 @@
 Home:::SRU Communication Feed
 Emergency Services:::University Police:::Fast ER Care:::Weather Policies:::2HourDelay:::
 Academics:::Library:::Tutorial Center:::Writing Center:::Technology Learning Center:::Career Services:::Finals Schedule:::
-Departments and Offices:::Res Life:::Student Intervention Services:::Office of Diversity and Inclusion:::CSIL:::Office of Student Conflict and Resolution:::Student Accounts:::Student Records:::Academic Services:::Payroll:::Public Affairs/Communication:::Human Resources:::Financial Aid:::Advisement Center:::IATS
-Communication:::The Rocket:::RockPride:::Social Media
-Dining:::On-Campus:::Off-Campus
-Health and Safety:::Health Center:::Counseling Center:::Policies
+Departments and Offices:::Res Life:::Student Intervention Services:::Office of Diversity and Inclusion:::CSIL:::Office of Student Conflict and Resolution:::Student Accounts:::Student Records:::Academic Services:::Payroll:::Public Affairs/Communication:::Human Resources:::Financial Aid:::Advisement Center:::IATS:::
+Communication:::The Rocket:::RockPride:::Social Media:::
+Dining:::On-Campus:::Off-Campus:::
+Health and Safety:::Health Center:::Counseling Center:::
 Recreation:::ARC:::Frisbee Golf Course:::
-Residence Life:::Contact Info:::FAQ
+Residence Life:::Contact Info:::FAQ:::
 Transportation:::Happy Bus/SGA Shuttle:::
-About:::Original Developers:::Current Developers:::Description
+About:::Original Developers:::Current Developers:::Description:::
 SGA Feedback:::
