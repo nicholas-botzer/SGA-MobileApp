@@ -115,7 +115,7 @@ function scene:show( event )
 
         local sublistItems = {}
         for item in string.gmatch(matchedLine, "([^"..":::".."]+)") do
-                sublistItems[#sublistItems + 1] = item
+                sublistItems[#sublistItems + 1] = string.gsub(item, "\n", "")
         end
 
         scrollView = widget.newScrollView
