@@ -105,6 +105,10 @@ function scene:show( event )
                 local titleText = display.newText( titleOpts )
                 titleText:setFillColor( 0,0,0 )
 
+                local aboveName = display.newLine( 0, yPos-80, width, yPos-80 )
+                aboveName:setStrokeColor( 0,0,0 )
+                aboveName.strokeWidth = 8
+
                 yPos = yPos + 80
 
                 local header = display.newLine( 0,yPos, width, yPos )
@@ -163,7 +167,10 @@ function scene:show( event )
                     end
                 end
 
-                yPos = yPos + 100 + height * .075
+                local lineCnt = select(2, toDisplay[3]:gsub( '\n', '\n' ))
+                yPos = yPos + height * .12
+ 
+                yPos = yPos + (lineCnt * width * .05) 
 
                 local hoursOpts = {
 
@@ -179,11 +186,12 @@ function scene:show( event )
                 local hoursText = display.newText( hoursOpts )
                 hoursText:setFillColor( 0,0,0 )
                 
-                yPos = yPos + 300
+                yPos = yPos + hoursText.height / 2 + 100
 
 
 
                 --insert into scrollView
+                scrollView:insert(aboveName)
                 scrollView:insert(titleText)
                 scrollView:insert(header)
                 scrollView:insert(locationText)
@@ -223,6 +231,10 @@ function scene:show( event )
 
                 local titleText = display.newText( titleOpts )
                 titleText:setFillColor( 0,0,0 )
+
+                local aboveName = display.newLine( 0, yPos-80, width, yPos-80 )
+                aboveName:setStrokeColor( 0,0,0 )
+                aboveName.strokeWidth = 8
 
                 yPos = yPos + 80
 
@@ -268,7 +280,10 @@ function scene:show( event )
                     end
                 end
 
-                yPos = yPos + 100 + height * .075
+                local lineCnt = select(2, toDisplay[3]:gsub( '\n', '\n' ))
+                yPos = yPos + height * .12
+ 
+                yPos = yPos + (lineCnt * width * .05) 
 
                 local hoursOpts = {
 
@@ -284,11 +299,12 @@ function scene:show( event )
                 local hoursText = display.newText( hoursOpts )
                 hoursText:setFillColor( 0,0,0 )
                 
-                yPos = yPos + 300
+                yPos = yPos + hoursText.height / 2 + 100
 
 
 
                 --insert into scrollView
+                scrollView:insert(aboveName)
                 scrollView:insert(titleText)
                 scrollView:insert(header)
                 scrollView:insert(phoneText)
