@@ -78,23 +78,6 @@ function scene:show( event )
                     elseif attribute == "url" then
                         toDisplay[2] = value
                         urlFlag = true
-                    elseif attribute == "facebook" then
-                        --This loop will let us have multiple fb accounts
-                        for name,link in pairs(value) do
-                            fbCnt = fbCnt + 1
-                            fbLink[fbCnt] = {}
-                            fbLink[fbCnt].name = name
-                            fbLink[fbCnt].link = link
-                        end
-                    elseif attribute == "twitter" then
-                        --This loop will let us have multiple twitter accounts
-                        for name,link in pairs(value) do
-                            twCnt = twCnt + 1
-                            twLink[twCnt] = {}
-                            twLink[twCnt].name = name
-                            twLink[twCnt].link = link
-                        end
-                    elseif attribute == "other" then
                     end
                 end
                 break
@@ -102,10 +85,7 @@ function scene:show( event )
         end
 
         if urlFlag then
-            populateButtons()
             system.openURL(toDisplay[2])
-        else
-            populateSocial()
         end
 
         sceneGroup:insert(background)
@@ -113,68 +93,6 @@ function scene:show( event )
         sceneGroup:insert(panel)--panel needs to be the last thing inserted!!! Do not insert it earlier!!!
     end
 end
-
-function populateButtons()
-    local matchedLine
-    local path = system.pathForFile("panelItems.txt", system.ResourceDirectory )
-    local panelPopFile = io.open(path, "r")
-
-    local matchedCategory = ""
-    for item in panelPopFile:lines() do
-
-        local cnt = 1
-        for i in string.gmatch(item,  "([^"..":::".."]+)") do
-            --store only the first string in a line to prevent accidental matching
-            if cnt == 1 then
-                matchedCategory = i
-            end
-            cnt = cnt + 1
-        end
-
-        if ( matchedCategory:match(clickedButtonLabel) ) then
-            matchedLine = item
-        end
-    end
-    io.close( panelPopFile )
-
-    local sublistItems = {}
-    for item in string.gmatch(matchedLine, "([^"..":::".."]+)") do
-            sublistItems[#sublistItems + 1] = item
-    end
-
-    scrollView = widget.newScrollView
-    {
-        x = width/2,
-        y = (height/2) + (height*.1/2),
-        width = width,
-        height = height*.9,
-        scrollHeight = height*.9,
-        horizontalScrollDisabled = true
-    }
-
-    for i = 2, #sublistItems do
-        local options =
-        {
-            id = "ButtonList"..i,
-            label = sublistItems[i],
-            labelAlign = "center",
-            x = width/2,
-            y = (height * .15) * (i -2) + (height * .095),
-            width = width,
-            height = height * .15,
-            shape = "rect",
-            fontSize = width * .05,
-            fillColor = { default={ 1, 0.9, 1.0, 0.9 }, over={ 1, 0.2, 0.5, 1 } },
-            strokeColor = { default={ 0, 0, 0, 1 }, over={ 0.8, 0.8, 1, 1 } },
-            strokeWidth = 4,
-            onEvent = handleListChoice
-        }
-        local button = widget.newButton(options)
-        scrollView:insert(button)
-    end
-end
-
-
 -- "scene:hide()"
 function scene:hide( event )
 
