@@ -161,9 +161,9 @@ function scene:show( event )
                 overFile = "phoneButtonClicked.png",
                 x = width/4 + 20,
                 y = yPos,
-                width = width/2,
-                height = height * .15,
-                onRelease = callNumber
+                width = width/4,
+                height = height * .2,
+                onRelease = callNumber,
             }
             local callButton = widget.newButton(callOptions)
 

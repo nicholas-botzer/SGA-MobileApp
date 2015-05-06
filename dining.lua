@@ -15,7 +15,8 @@ local scene = composer.newScene()
 
 function callNumber(event)
 
-    system.openURL( phoneNumber )
+    print("hey")
+    --system.openURL( phoneNum )
 
 end
 
@@ -47,7 +48,7 @@ function scene:show( event )
         local lookingFor = clickedListLabel
         local lineNumber = -1
         local toDisplay = {}
-        phoneNumber = ""
+        local phoneNumber = ""
         local info = {}
 
         local path = system.pathForFile("dining.json", system.ResourceDirectory )
@@ -70,12 +71,12 @@ function scene:show( event )
             scrollHeight = height*.9,
         }
 
-        yPos = height *.1
+		yPos = height *.1
 
-        if lookingFor == "On-Campus" then
-            for num = 1, #fileItems["on-campus"] do
+		if lookingFor == "On-Campus" then
+			for num = 1, #fileItems["on-campus"] do
                 for attribute,value in pairs(fileItems["on-campus"][num]) do
-                    if attribute == "name" then
+				    if attribute == "name" then
                         toDisplay[1] = value
                     elseif attribute == "phone" then
                         toDisplay[2] = value
@@ -103,11 +104,6 @@ function scene:show( event )
 
                 local titleText = display.newText( titleOpts )
                 titleText:setFillColor( 0,0,0 )
-
-                local aboveName = display.newLine( 0, yPos-80, width, yPos-80 )
-                aboveName:setStrokeColor( 0,0,0 )
-                aboveName.strokeWidth = 8
-
 
                 yPos = yPos + 80
 
@@ -147,24 +143,28 @@ function scene:show( event )
                 local phoneText = display.newText( phoneOpts )
                 phoneText:setFillColor( 0,0,0 )
 
-                yPos = yPos + 100 + height * .075
+                yPos = yPos + height * .1
                 local callOptions = 
                 {
-                    id = "CallButton",
+                    id = phoneNumber,
                     defaultFile = "phoneButton.png",
                     overFile = "phoneButtonClicked.png",
                     x = width/4 + 20,
                     y = yPos,
                     width = width/2,
-                    height = height * .15,
-                    onRelease = callNumber
+                    height = height * .15
                 }
                 local callButton = widget.newButton(callOptions)
 
-                local lineCnt = select(2, toDisplay[3]:gsub( '\n', '\n' ))
-                yPos = yPos + height * .12
+                function callButton:touch(event)
+                    if event.phase == "ended" then
+                        system.openURL( event.target.id )
+                        return true
+                    end
+                end
 
-                yPos = yPos + (lineCnt * width * .05) 
+                yPos = yPos + 100 + height * .075
+
                 local hoursOpts = {
 
                     x = width/2,
@@ -179,12 +179,11 @@ function scene:show( event )
                 local hoursText = display.newText( hoursOpts )
                 hoursText:setFillColor( 0,0,0 )
                 
-                yPos = yPos + hoursText.height / 2 + 100
+                yPos = yPos + 300
 
 
 
                 --insert into scrollView
-                scrollView:insert(aboveName)
                 scrollView:insert(titleText)
                 scrollView:insert(header)
                 scrollView:insert(locationText)
@@ -194,8 +193,8 @@ function scene:show( event )
 
             end
 
-        elseif lookingFor == "Off-Campus" then
-            for num = 1, #fileItems["off-campus"] do
+		elseif lookingFor == "Off-Campus" then
+			for num = 1, #fileItems["off-campus"] do
                 for attribute,value in pairs(fileItems["off-campus"][num]) do
                     if attribute == "name" then
                         toDisplay[1] = value
@@ -225,16 +224,13 @@ function scene:show( event )
                 local titleText = display.newText( titleOpts )
                 titleText:setFillColor( 0,0,0 )
 
-                local aboveName = display.newLine( 0, yPos-80, width, yPos-80 )
-                aboveName:setStrokeColor( 0,0,0 )
-                aboveName.strokeWidth = 8
-
-
                 yPos = yPos + 80
 
                 local header = display.newLine( 0,yPos, width, yPos )
                 header:setStrokeColor( 0,0,0 )
                 header.strokeWidth = 8
+
+                yPos = yPos + 100
 
                 yPos = yPos + 100
 
@@ -255,21 +251,24 @@ function scene:show( event )
                 yPos = yPos + height * .1
                 local callOptions = 
                 {
-                    id = "CallButton",
+                    id = phoneNumber,
                     defaultFile = "phoneButton.png",
                     overFile = "phoneButtonClicked.png",
                     x = width/4 + 20,
                     y = yPos,
                     width = width/2,
-                    height = height * .15,
-                    onRelease = callNumber
+                    height = height * .15
                 }
                 local callButton = widget.newButton(callOptions)
 
-                local lineCnt = select(2, toDisplay[3]:gsub( '\n', '\n' ))
-                yPos = yPos + height * .12
+                function callButton:touch(event)
+                    if event.phase == "ended" then
+                        print(event.target.id)
+                        return true
+                    end
+                end
 
-                yPos = yPos + (lineCnt * width * .05) 
+                yPos = yPos + 100 + height * .075
 
                 local hoursOpts = {
 
@@ -285,12 +284,11 @@ function scene:show( event )
                 local hoursText = display.newText( hoursOpts )
                 hoursText:setFillColor( 0,0,0 )
                 
-                yPos = yPos + hoursText.height + 50
+                yPos = yPos + 300
 
 
 
                 --insert into scrollView
-                scrollView:insert(aboveName)
                 scrollView:insert(titleText)
                 scrollView:insert(header)
                 scrollView:insert(phoneText)
@@ -299,10 +297,10 @@ function scene:show( event )
 
 
             end --end for elseif
-        end -- end if
+		end -- end if
 
         yPos = yPos + 300
-        local bufferBox = display.newRect( width/2,yPos , width, 0)
+        local bufferBox = display.newRect( width/2,yPos , width, 0 )
         bufferBox:setFillColor( 1,1,1 )
 
         scrollView:insert(bufferBox)
