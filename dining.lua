@@ -157,7 +157,7 @@ function scene:show( event )
                 local callButton = widget.newButton(callOptions)
 
                 function callButton:touch(event)
-                    if event.phase == "began" then
+                    if event.phase == "ended" then
                         system.openURL( event.target.id )
                         return true
                     end
@@ -262,7 +262,7 @@ function scene:show( event )
                 local callButton = widget.newButton(callOptions)
 
                 function callButton:touch(event)
-                    if event.phase == "began" then
+                    if event.phase == "ended" then
                         print(event.target.id)
                         return true
                     end
