@@ -15,7 +15,8 @@ local scene = composer.newScene()
 
 function callNumber(event)
 
-    system.openURL( phoneNumber )
+    print("hey")
+    --system.openURL( phoneNum )
 
 end
 
@@ -47,7 +48,7 @@ function scene:show( event )
         local lookingFor = clickedListLabel
         local lineNumber = -1
         local toDisplay = {}
-        phoneNumber = ""
+        local phoneNumber = ""
         local info = {}
 
         local path = system.pathForFile("dining.json", system.ResourceDirectory )
@@ -145,16 +146,22 @@ function scene:show( event )
                 yPos = yPos + height * .1
                 local callOptions = 
                 {
-                    id = "CallButton",
+                    id = phoneNumber,
                     defaultFile = "phoneButton.png",
                     overFile = "phoneButtonClicked.png",
                     x = width/4 + 20,
                     y = yPos,
                     width = width/2,
-                    height = height * .15,
-                    onRelease = callNumber
+                    height = height * .15
                 }
                 local callButton = widget.newButton(callOptions)
+
+                function callButton:touch(event)
+                    if event.phase == "began" then
+                        system.openURL( event.target.id )
+                        return true
+                    end
+                end
 
                 yPos = yPos + 100 + height * .075
 
@@ -244,16 +251,22 @@ function scene:show( event )
                 yPos = yPos + height * .1
                 local callOptions = 
                 {
-                    id = "CallButton",
+                    id = phoneNumber,
                     defaultFile = "phoneButton.png",
                     overFile = "phoneButtonClicked.png",
                     x = width/4 + 20,
                     y = yPos,
                     width = width/2,
-                    height = height * .15,
-                    onRelease = callNumber
+                    height = height * .15
                 }
                 local callButton = widget.newButton(callOptions)
+
+                function callButton:touch(event)
+                    if event.phase == "began" then
+                        print(event.target.id)
+                        return true
+                    end
+                end
 
                 yPos = yPos + 100 + height * .075
 
@@ -287,7 +300,7 @@ function scene:show( event )
 		end -- end if
 
         yPos = yPos + 300
-        local bufferBox = display.newRect( width/2,yPos , width, 400 )
+        local bufferBox = display.newRect( width/2,yPos , width, 0 )
         bufferBox:setFillColor( 1,1,1 )
 
         scrollView:insert(bufferBox)
