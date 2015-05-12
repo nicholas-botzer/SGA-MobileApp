@@ -196,6 +196,7 @@ function scene:show( event )
         end
 
 
+
         background = display.newRect(0, 0,display.contentWidth,display.contentHeight)
         background.x = width/2
         background.y = height/2

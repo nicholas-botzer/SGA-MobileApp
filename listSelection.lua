@@ -139,7 +139,7 @@ function scene:show( event )
                 label = sublistItems[i],
                 labelAlign = "center",
                 x = width/2,
-                y = (height * .15) * (i -2) + (height * .095),
+                y = (height * .15) * (i -2) + (height * .085),
                 width = width,
                 height = height * .15,
                 shape = "rect",
